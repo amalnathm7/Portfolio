@@ -74,10 +74,14 @@ class _ContactPageState extends State<ContactPage> {
                             width: size.width * 0.2,
                             child: TextField(
                               cursorColor: Colours.primary,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 hintText: "Name",
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(),
+                                hintStyle: TextStyle(
+                                  fontSize: size.width * 0.008,
+                                  color: Colours.text.withOpacity(0.75)
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: const OutlineInputBorder(),
                               ),
                             ),
                           ),
@@ -93,10 +97,14 @@ class _ContactPageState extends State<ContactPage> {
                             width: size.width * 0.2,
                             child: TextField(
                               cursorColor: Colours.primary,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 hintText: "Email",
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(),
+                                hintStyle: TextStyle(
+                                    fontSize: size.width * 0.008,
+                                    color: Colours.text.withOpacity(0.75)
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: const OutlineInputBorder(),
                               ),
                             ),
                           ),
@@ -112,10 +120,14 @@ class _ContactPageState extends State<ContactPage> {
                             width: size.width * 0.2,
                             child: TextField(
                               cursorColor: Colours.primary,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 hintText: "Project Domain",
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(),
+                                hintStyle: TextStyle(
+                                    fontSize: size.width * 0.008,
+                                    color: Colours.text.withOpacity(0.75)
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: const OutlineInputBorder(),
                               ),
                             ),
                           ),
@@ -133,10 +145,14 @@ class _ContactPageState extends State<ContactPage> {
                               minLines: 5,
                               maxLines: 10,
                               cursorColor: Colours.primary,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 hintText: "Project Description",
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(),
+                                hintStyle: TextStyle(
+                                    fontSize: size.width * 0.008,
+                                    color: Colours.text.withOpacity(0.75)
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: const OutlineInputBorder(),
                               ),
                             ),
                           ),
