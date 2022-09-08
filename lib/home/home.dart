@@ -41,6 +41,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      if (mounted) {
+        setState(() {
+          MyApp.startHome = false;
+        });
+      }
+    });
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 800));
   }
@@ -59,536 +66,558 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               top: size.width * 0.01,
               bottom: size.width * 0.02,
             ),
-      child: Stack(
-        children: [
-          Center(
-            child: AnimatedPadding(
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 500),
+        opacity: MyApp.startHome ? 0 : 1,
+        child: Stack(
+          children: [
+            Center(
+              child: AnimatedPadding(
+                duration: const Duration(milliseconds: 500),
+                padding: _menu
+                    ? EdgeInsets.only(left: size.width * 0.3)
+                    : EdgeInsets.zero,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colours.primary,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            AnimatedPositioned(
+              top: size.height * 0.4,
+              left: _menu ? size.width * 0.1 : -500,
               duration: const Duration(milliseconds: 500),
-              padding: _menu
-                  ? EdgeInsets.only(left: size.width * 0.3)
-                  : EdgeInsets.zero,
-              child: Row(
+              child: MouseRegion(
+                onEnter: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 0;
+                    });
+                  }
+                },
+                onExit: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 0;
+                    });
+                  }
+                },
+                child: TextButton(
+                  onPressed: () {
+                    _animateToPage(0);
+                  },
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: size.width * 0.003,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: size.width * 0.004,
+                          width: _menuIndex == 0 ? size.width * 0.04 : 0,
+                          decoration: BoxDecoration(
+                            color: Colours.primary.withOpacity(0.75),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "HOME",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: size.width * 0.008,
+                          letterSpacing: 3,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            AnimatedPositioned(
+              top: size.height * 0.45,
+              left: _menu ? size.width * 0.1 : -500,
+              duration: const Duration(milliseconds: 600),
+              child: MouseRegion(
+                onEnter: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 1;
+                    });
+                  }
+                },
+                onExit: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 0;
+                    });
+                  }
+                },
+                child: TextButton(
+                  onPressed: () {
+                    _animateToPage(1);
+                  },
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: size.width * 0.003,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: size.width * 0.004,
+                          width: _menuIndex == 1 ? size.width * 0.08 : 0,
+                          decoration: BoxDecoration(
+                            color: Colours.primary.withOpacity(0.75),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "WHO AM I?",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: size.width * 0.008,
+                          letterSpacing: 3,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            AnimatedPositioned(
+              top: size.height * 0.5,
+              left: _menu ? size.width * 0.1 : -500,
+              duration: const Duration(milliseconds: 700),
+              child: MouseRegion(
+                onEnter: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 2;
+                    });
+                  }
+                },
+                onExit: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 0;
+                    });
+                  }
+                },
+                child: TextButton(
+                  onPressed: () {
+                    _animateToPage(2);
+                  },
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: size.width * 0.003,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: size.width * 0.004,
+                          width: _menuIndex == 2 ? size.width * 0.15 : 0,
+                          decoration: BoxDecoration(
+                            color: Colours.primary.withOpacity(0.75),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "WHAT DO I KNOW?",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: size.width * 0.008,
+                          letterSpacing: 3,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            AnimatedPositioned(
+              top: size.height * 0.55,
+              left: _menu ? size.width * 0.1 : -500,
+              duration: const Duration(milliseconds: 800),
+              child: MouseRegion(
+                onEnter: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 3;
+                    });
+                  }
+                },
+                onExit: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 0;
+                    });
+                  }
+                },
+                child: TextButton(
+                  onPressed: () {
+                    _animateToPage(3);
+                  },
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: size.width * 0.003,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: size.width * 0.004,
+                          width: _menuIndex == 3 ? size.width * 0.15 : 0,
+                          decoration: BoxDecoration(
+                            color: Colours.primary.withOpacity(0.75),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "WHAT HAVE I DONE?",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: size.width * 0.008,
+                          letterSpacing: 3,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            AnimatedPositioned(
+              top: size.height * 0.6,
+              left: _menu ? size.width * 0.1 : -500,
+              duration: const Duration(milliseconds: 900),
+              child: MouseRegion(
+                onEnter: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 4;
+                    });
+                  }
+                },
+                onExit: (event) {
+                  if (mounted) {
+                    setState(() {
+                      _menuIndex = 0;
+                    });
+                  }
+                },
+                child: TextButton(
+                  onPressed: () {
+                    _animateToPage(4);
+                  },
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: size.width * 0.003,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: size.width * 0.004,
+                          width: _menuIndex == 4 ? size.width * 0.15 : 0,
+                          decoration: BoxDecoration(
+                            color: Colours.primary.withOpacity(0.75),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "LET'S GET IN TOUCH",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: size.width * 0.008,
+                          letterSpacing: 3,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            AnimatedPositioned(
+              height: size.height,
+              duration: const Duration(milliseconds: 500),
+              left: MyApp.startHome ? -100 : 8.0,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colours.primary,
+                  SizedBox(
+                    height: size.width * 0.05,
+                  ),
+                  Flexible(
+                    child: RotatedBox(
+                      quarterTurns: 3,
+                      child: IconButton(
+                        splashRadius: size.width * 0.01,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        onPressed: () {
+                          setState(() {
+                            _menu = !_menu;
+                          });
+
+                          _menu
+                              ? _animationController!.forward()
+                              : _animationController!.reverse();
+                        },
+                        icon: AnimatedIcon(
+                          size: size.width * 0.02,
+                          icon: AnimatedIcons.menu_close,
+                          progress: _animationController!,
+                          color: Colors.grey[800],
+                        ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Container(),
+                  Flexible(
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 500),
+                      opacity: _menu ? 0 : 1,
+                      child: Transform.scale(
+                        scaleX: -1,
+                        child: RotatedBox(
+                          quarterTurns: 0,
+                          child: Lottie.network(
+                            "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
+                            height: size.width * 0.075,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: size.width * 0.02),
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 500),
+                        opacity: _menu ? 0 : 1,
+                        child: Text(
+                          "You can jump into\nmy life here",
+                          style: GoogleFonts.caveat(
+                            fontSize: size.width * 0.015,
+                            color: Colours.text1,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
-          AnimatedPositioned(
-            top: size.height * 0.4,
-            left: _menu ? size.width * 0.1 : -500,
-            duration: const Duration(milliseconds: 500),
-            child: MouseRegion(
-              onEnter: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 0;
-                  });
-                }
-              },
-              onExit: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 0;
-                  });
-                }
-              },
-              child: TextButton(
-                onPressed: () {
-                  _animateToPage(0);
-                },
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: size.width * 0.003,
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        height: size.width * 0.004,
-                        width: _menuIndex == 0 ? size.width * 0.04 : 0,
-                        decoration: BoxDecoration(
-                          color: Colours.primary.withOpacity(0.75),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 700),
+              opacity: MyApp.startHome ? 0 : 1,
+              child: AnimatedPadding(
+                duration: const Duration(milliseconds: 500),
+                padding: _menu
+                    ? EdgeInsets.only(left: size.width * 0.3)
+                    : EdgeInsets.zero,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: Container(
+                          height: size.width * 0.18,
+                          width: size.width * 0.18,
+                          decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.25),
+                              borderRadius:
+                                  BorderRadius.circular(size.width / 20)),
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(size.width / 20),
+                            child: Image.asset(
+                              "assets/pic1.png",
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      "HOME",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: size.width * 0.008,
-                          letterSpacing: 3,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800]),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          AnimatedPositioned(
-            top: size.height * 0.45,
-            left: _menu ? size.width * 0.1 : -500,
-            duration: const Duration(milliseconds: 600),
-            child: MouseRegion(
-              onEnter: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 1;
-                  });
-                }
-              },
-              onExit: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 0;
-                  });
-                }
-              },
-              child: TextButton(
-                onPressed: () {
-                  _animateToPage(1);
-                },
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: size.width * 0.003,
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        height: size.width * 0.004,
-                        width: _menuIndex == 1 ? size.width * 0.08 : 0,
-                        decoration: BoxDecoration(
-                          color: Colours.primary.withOpacity(0.75),
+                      Flexible(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                "HEL",
+                                style: GoogleFonts.kanit(
+                                  fontSize: size.width * 0.1,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colours.text,
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Text(
+                                "LO.",
+                                style: GoogleFonts.kanit(
+                                  fontSize: size.width * 0.1,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colours.primary,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    Text(
-                      "WHO AM I?",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: size.width * 0.008,
-                          letterSpacing: 3,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800]),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          AnimatedPositioned(
-            top: size.height * 0.5,
-            left: _menu ? size.width * 0.1 : -500,
-            duration: const Duration(milliseconds: 700),
-            child: MouseRegion(
-              onEnter: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 2;
-                  });
-                }
-              },
-              onExit: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 0;
-                  });
-                }
-              },
-              child: TextButton(
-                onPressed: () {
-                  _animateToPage(2);
-                },
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: size.width * 0.003,
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        height: size.width * 0.004,
-                        width: _menuIndex == 2 ? size.width * 0.15 : 0,
-                        decoration: BoxDecoration(
-                          color: Colours.primary.withOpacity(0.75),
+                      Flexible(
+                        child: Text(
+                          "I'm Amal Nath, a student, programmer and software developer",
+                          style: GoogleFonts.caveat(
+                            fontSize: size.width * 0.02,
+                            color: Colours.text1,
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      "WHAT DO I KNOW?",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: size.width * 0.008,
-                          letterSpacing: 3,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800]),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          AnimatedPositioned(
-            top: size.height * 0.55,
-            left: _menu ? size.width * 0.1 : -500,
-            duration: const Duration(milliseconds: 800),
-            child: MouseRegion(
-              onEnter: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 3;
-                  });
-                }
-              },
-              onExit: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 0;
-                  });
-                }
-              },
-              child: TextButton(
-                onPressed: () {
-                  _animateToPage(3);
-                },
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: size.width * 0.003,
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        height: size.width * 0.004,
-                        width: _menuIndex == 3 ? size.width * 0.15 : 0,
-                        decoration: BoxDecoration(
-                          color: Colours.primary.withOpacity(0.75),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "WHAT HAVE I DONE?",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: size.width * 0.008,
-                          letterSpacing: 3,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800]),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          AnimatedPositioned(
-            top: size.height * 0.6,
-            left: _menu ? size.width * 0.1 : -500,
-            duration: const Duration(milliseconds: 900),
-            child: MouseRegion(
-              onEnter: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 4;
-                  });
-                }
-              },
-              onExit: (event) {
-                if (mounted) {
-                  setState(() {
-                    _menuIndex = 0;
-                  });
-                }
-              },
-              child: TextButton(
-                onPressed: () {
-                  _animateToPage(4);
-                },
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: size.width * 0.003,
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        height: size.width * 0.004,
-                        width: _menuIndex == 4 ? size.width * 0.15 : 0,
-                        decoration: BoxDecoration(
-                          color: Colours.primary.withOpacity(0.75),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "LET'S GET IN TOUCH",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: size.width * 0.008,
-                          letterSpacing: 3,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800]),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  child: SizedBox(
-                    height: size.width * 0.1,
+                    ],
                   ),
                 ),
-                Flexible(
-                  child: RotatedBox(
-                    quarterTurns: 3,
+              ),
+            ),
+            AnimatedPositioned(
+              height: size.height,
+              duration: const Duration(milliseconds: 500),
+              right: MyApp.startHome ? -100 : 10,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: size.width * 0.02),
+                      child: AnimatedOpacity(
+                        opacity: _menu ? 0 : 1,
+                        duration: const Duration(milliseconds: 500),
+                        child: Text(
+                          "I'm active in\nthese platforms",
+                          style: GoogleFonts.caveat(
+                            fontSize: size.width * 0.015,
+                            color: Colours.text1,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: AnimatedOpacity(
+                      opacity: _menu ? 0 : 1,
+                      duration: const Duration(milliseconds: 500),
+                      child: Transform.scale(
+                        scaleX: -1,
+                        child: RotatedBox(
+                          quarterTurns: 2,
+                          child: Lottie.network(
+                            "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
+                            height: size.width * 0.075,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
                     child: IconButton(
                       splashRadius: size.width * 0.01,
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       hoverColor: Colors.transparent,
                       onPressed: () {
-                        setState(() {
-                          _menu = !_menu;
-                        });
-
-                        _menu
-                            ? _animationController!.forward()
-                            : _animationController!.reverse();
+                        _launchUrl(_gitHubUrl);
                       },
-                      icon: AnimatedIcon(
-                        size: size.width * 0.02,
-                        icon: AnimatedIcons.menu_close,
-                        progress: _animationController!,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 500),
-                    opacity: _menu ? 0 : 1,
-                    child: Transform.scale(
-                      scaleX: -1,
-                      child: RotatedBox(
-                        quarterTurns: 0,
-                        child: Lottie.network(
-                          "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
-                          height: size.width * 0.075,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: size.width * 0.02),
-                    child: AnimatedOpacity(
-                      duration: const Duration(milliseconds: 500),
-                      opacity: _menu ? 0 : 1,
-                      child: Text(
-                        "You can jump into\nmy life here",
-                        style: GoogleFonts.caveat(
-                          fontSize: size.width * 0.015,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          AnimatedPadding(
-            duration: const Duration(milliseconds: 500),
-            padding: _menu
-                ? EdgeInsets.only(left: size.width * 0.3)
-                : EdgeInsets.zero,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: Container(
-                      height: size.width * 0.18,
-                      width: size.width * 0.18,
-                      decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.25),
-                          borderRadius: BorderRadius.circular(size.width / 20)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(size.width / 20),
-                        child: Image.asset(
-                          "assets/pic1.png",
-                        ),
+                      icon: FaIcon(
+                        FontAwesomeIcons.github,
+                        size: size.width * 0.015,
+                        color: Colours.text,
                       ),
                     ),
                   ),
                   Flexible(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            "HEL",
-                            style: GoogleFonts.kanit(
-                              fontSize: size.width * 0.1,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey[800],
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          child: Text(
-                            "LO.",
-                            style: GoogleFonts.kanit(
-                              fontSize: size.width * 0.1,
-                              fontWeight: FontWeight.bold,
-                              color: Colours.primary,
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: IconButton(
+                      splashRadius: size.width * 0.01,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onPressed: () {
+                        _launchUrl(_linkedInUrl);
+                      },
+                      icon: FaIcon(
+                        FontAwesomeIcons.linkedin,
+                        size: size.width * 0.015,
+                        color: Colours.text,
+                      ),
                     ),
                   ),
                   Flexible(
-                    child: Text(
-                      "I'm Amal Nath, a student, programmer and software developer",
-                      style: GoogleFonts.caveat(
-                        fontSize: size.width * 0.02,
+                    child: IconButton(
+                      splashRadius: size.width * 0.01,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onPressed: () {
+                        _launchUrl(_instaUrl);
+                      },
+                      icon: FaIcon(
+                        FontAwesomeIcons.instagram,
+                        size: size.width * 0.015,
+                        color: Colours.text,
                       ),
                     ),
+                  ),
+                  Flexible(
+                    child: IconButton(
+                      splashRadius: size.width * 0.01,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onPressed: () {
+                        _launchUrl(_twitterUrl);
+                      },
+                      icon: FaIcon(
+                        FontAwesomeIcons.twitter,
+                        size: size.width * 0.015,
+                        color: Colours.text,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.width * 0.1,
                   ),
                 ],
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Flexible(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: size.width * 0.02),
-                    child: AnimatedOpacity(
-                      opacity: _menu ? 0 : 1,
-                      duration: const Duration(milliseconds: 500),
-                      child: Text(
-                        "I'm active in\nthese platforms",
-                        style: GoogleFonts.caveat(
-                          fontSize: size.width * 0.015,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                opacity: _menu ? 0 : 0.25,
+                child: Lottie.network(
+                  "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
+                  height: size.width * 0.05,
+                  width: size.width * 0.05,
                 ),
-                Flexible(
-                  child: AnimatedOpacity(
-                    opacity: _menu ? 0 : 1,
-                    duration: const Duration(milliseconds: 500),
-                    child: Transform.scale(
-                      scaleX: -1,
-                      child: RotatedBox(
-                        quarterTurns: 2,
-                        child: Lottie.network(
-                          "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
-                          height: size.width * 0.075,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: IconButton(
-                    splashRadius: size.width * 0.01,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    onPressed: () {
-                      _launchUrl(_gitHubUrl);
-                    },
-                    icon: FaIcon(
-                      FontAwesomeIcons.github,
-                      size: size.width * 0.015,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: IconButton(
-                    splashRadius: size.width * 0.01,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    onPressed: () {
-                      _launchUrl(_linkedInUrl);
-                    },
-                    icon: FaIcon(
-                      FontAwesomeIcons.linkedin,
-                      size: size.width * 0.015,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: IconButton(
-                    splashRadius: size.width * 0.01,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    onPressed: () {
-                      _launchUrl(_instaUrl);
-                    },
-                    icon: FaIcon(
-                      FontAwesomeIcons.instagram,
-                      size: size.width * 0.015,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: IconButton(
-                    splashRadius: size.width * 0.01,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    onPressed: () {
-                      _launchUrl(_twitterUrl);
-                    },
-                    icon: FaIcon(
-                      FontAwesomeIcons.twitter,
-                      size: size.width * 0.015,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
-              opacity: _menu ? 0 : 0.25,
-              child: Lottie.network(
-                "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
-                height: size.width * 0.05,
-                width: size.width * 0.05,
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

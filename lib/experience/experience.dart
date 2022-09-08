@@ -123,220 +123,94 @@ class _ExperiencePageState extends State<ExperiencePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          MyApp.startExp = false;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Stack(
-      children: [
-        Center(
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: size.width * 0.03,
-                        right: size.width * 0.03,
-                        top: size.width * 0.05,
-                        bottom: size.height * 0.02,
-                      ),
-                      child: Text(
-                        "What have I done?",
-                        style: GoogleFonts.kanit(
-                          fontSize: size.width * 0.025,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Lottie.network(
-                        "https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json",
-                        height: size.width * 0.1,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: size.width * 0.03,
-                        right: size.width * 0.03,
-                        top: size.height * 0.02,
-                        bottom: size.height * 0.01,
-                      ),
-                      child: Text(
-                        "Mainly internships, projects and freelance works.",
-                        style: GoogleFonts.caveat(
-                          fontSize: size.width * 0.015,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: size.width * 0.03,
-                        right: size.width * 0.03,
-                        bottom: size.height * 0.02,
-                      ),
-                      child: Text(
-                        "Some of my internships are listed below.\n",
-                        style: GoogleFonts.caveat(
-                          fontSize: size.width * 0.015,
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: SizedBox(
-                        width: size.width / 3,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: size.width * 0.05,
-                            right: size.width * 0.05,
-                          ),
-                          child: MouseRegion(
-                            onEnter: (event) {
-                              MyApp.scrollLock = true;
-                            },
-                            onExit: (event) {
-                              MyApp.scrollLock = false;
-                            },
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: internships.length,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: EdgeInsets.only(
-                                      bottom: size.width * 0.01,
-                                      left: size.width * 0.01,
-                                      right: size.width * 0.01,
-                                    ),
-                                    child: MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      onEnter: (event) {
-                                        if (mounted) {
-                                          setState(() {
-                                            hoverIndex1 = index;
-                                          });
-                                        }
-                                      },
-                                      onExit: (event) {
-                                        if (mounted) {
-                                          setState(() {
-                                            hoverIndex1 = -1;
-                                          });
-                                        }
-                                      },
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          _launchUrl(
-                                              internships[index]['link']!);
-                                        },
-                                        child: AnimatedPadding(
-                                          duration:
-                                              const Duration(milliseconds: 200),
-                                          padding: hoverIndex1 != index
-                                              ? EdgeInsets.zero
-                                              : EdgeInsets.only(
-                                                  left: size.width * 0.01,
-                                                  right: size.width * 0.01,
-                                                ),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                alignment: Alignment.centerLeft,
-                                                opacity: hoverIndex1 == index
-                                                    ? 0.75
-                                                    : 0.5,
-                                                image: AssetImage(
-                                                    internships[index]
-                                                        ['image']!),
-                                              ),
-                                              color: Colours.primary
-                                                  .withOpacity(0.25),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      size.width * 0.01),
-                                            ),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: size.width * 0.02,
-                                                    left: size.width * 0.01,
-                                                    right: size.width * 0.01,
-                                                  ),
-                                                  child: Text(
-                                                    internships[index]
-                                                        ['title']!,
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize:
-                                                          size.width * 0.01,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: size.width * 0.001,
-                                                    left: size.width * 0.01,
-                                                    right: size.width * 0.01,
-                                                  ),
-                                                  child: Text(
-                                                    internships[index]['role']!,
-                                                    style: TextStyle(
-                                                      fontSize:
-                                                          size.width * 0.007,
-                                                      color: Colors.grey[800],
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                    top: size.width * 0.01,
-                                                    left: size.width * 0.01,
-                                                    right: size.width * 0.01,
-                                                    bottom: size.width * 0.02,
-                                                  ),
-                                                  child: Text(
-                                                    internships[index]
-                                                        ['sub-title']!,
-                                                    style: TextStyle(
-                                                      fontSize:
-                                                          size.width * 0.008,
-                                                      color: Colors.grey[800],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colours.primary,
-                  ),
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 500),
+      opacity: MyApp.startExp ? 0 : 1,
+      child: Stack(
+        children: [
+          Center(
+            child: Row(
+              children: [
+                Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: size.width * 0.1,
+                      AnimatedPadding(
+                        duration: const Duration(milliseconds: 500),
+                        padding: MyApp.startExp
+                            ? EdgeInsets.zero
+                            : EdgeInsets.only(
+                                left: size.width * 0.03,
+                                right: size.width * 0.03,
+                                top: size.width * 0.05,
+                                bottom: size.height * 0.02,
+                              ),
+                        child: Text(
+                          "What have I done?",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.025,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.text,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Lottie.network(
+                          "https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                      AnimatedPadding(
+                        duration: const Duration(milliseconds: 500),
+                        padding: MyApp.startExp
+                            ? EdgeInsets.zero
+                            : EdgeInsets.only(
+                                left: size.width * 0.03,
+                                right: size.width * 0.03,
+                                top: size.height * 0.02,
+                                bottom: size.height * 0.01,
+                              ),
+                        child: Text(
+                          "Mainly internships, projects and freelance works.",
+                          style: GoogleFonts.caveat(
+                            fontSize: size.width * 0.015,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.text1,
+                          ),
+                        ),
+                      ),
+                      AnimatedPadding(
+                        duration: const Duration(milliseconds: 500),
+                        padding: MyApp.startExp
+                            ? EdgeInsets.zero
+                            : EdgeInsets.only(
+                                left: size.width * 0.03,
+                                right: size.width * 0.03,
+                                bottom: size.height * 0.02,
+                              ),
+                        child: Text(
+                          "Some of my internships are listed below.\n",
+                          style: GoogleFonts.caveat(
+                            fontSize: size.width * 0.015,
+                            color: Colours.text1,
+                          ),
+                        ),
                       ),
                       Flexible(
                         child: SizedBox(
@@ -356,40 +230,39 @@ class _ExperiencePageState extends State<ExperiencePage> {
                               child: ListView.builder(
                                   shrinkWrap: true,
                                   physics: const BouncingScrollPhysics(),
-                                  itemCount: projects.length,
+                                  itemCount: internships.length,
                                   itemBuilder: (context, index) {
                                     return Padding(
                                       padding: EdgeInsets.only(
-                                        top: size.width * 0.005,
-                                        bottom: size.width * 0.005,
-                                        left: size.width * 0.02,
-                                        right: size.width * 0.02,
+                                        bottom: size.width * 0.01,
+                                        left: size.width * 0.01,
+                                        right: size.width * 0.01,
                                       ),
                                       child: MouseRegion(
                                         cursor: SystemMouseCursors.click,
                                         onEnter: (event) {
                                           if (mounted) {
                                             setState(() {
-                                              hoverIndex2 = index;
+                                              hoverIndex1 = index;
                                             });
                                           }
                                         },
                                         onExit: (event) {
                                           if (mounted) {
                                             setState(() {
-                                              hoverIndex2 = -1;
+                                              hoverIndex1 = -1;
                                             });
                                           }
                                         },
                                         child: GestureDetector(
                                           onTap: () {
                                             _launchUrl(
-                                                projects[index]['link']!);
+                                                internships[index]['link']!);
                                           },
                                           child: AnimatedPadding(
                                             duration: const Duration(
                                                 milliseconds: 200),
-                                            padding: hoverIndex2 != index
+                                            padding: hoverIndex1 != index
                                                 ? EdgeInsets.zero
                                                 : EdgeInsets.only(
                                                     left: size.width * 0.01,
@@ -400,14 +273,15 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                                 image: DecorationImage(
                                                   alignment:
                                                       Alignment.centerLeft,
-                                                  opacity: hoverIndex2 == index
+                                                  opacity: hoverIndex1 == index
                                                       ? 0.75
                                                       : 0.5,
                                                   image: AssetImage(
-                                                      projects[index]
+                                                      internships[index]
                                                           ['image']!),
                                                 ),
-                                                color: Colors.black12,
+                                                color: Colours.primary
+                                                    .withOpacity(0.25),
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                         size.width * 0.01),
@@ -423,12 +297,14 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                                       right: size.width * 0.01,
                                                     ),
                                                     child: Text(
-                                                      projects[index]['title']!,
+                                                      internships[index]
+                                                          ['title']!,
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontSize:
                                                             size.width * 0.01,
+                                                        color: Colours.text1,
                                                       ),
                                                     ),
                                                   ),
@@ -439,11 +315,12 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                                       right: size.width * 0.01,
                                                     ),
                                                     child: Text(
-                                                      projects[index]['role']!,
+                                                      internships[index]
+                                                          ['role']!,
                                                       style: TextStyle(
                                                         fontSize:
                                                             size.width * 0.007,
-                                                        color: Colors.grey[800],
+                                                        color: Colours.text,
                                                       ),
                                                     ),
                                                   ),
@@ -455,12 +332,12 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                                       bottom: size.width * 0.02,
                                                     ),
                                                     child: Text(
-                                                      projects[index]
+                                                      internships[index]
                                                           ['sub-title']!,
                                                       style: TextStyle(
                                                         fontSize:
                                                             size.width * 0.008,
-                                                        color: Colors.grey[800],
+                                                        color: Colours.text,
                                                       ),
                                                     ),
                                                   ),
@@ -476,310 +353,475 @@ class _ExperiencePageState extends State<ExperiencePage> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: size.width * 0.01),
-                        child: Text(
-                          "These are some of my favourite projects.\n",
-                          style: GoogleFonts.caveat(
-                            fontSize: size.width * 0.015,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: size.width * 0.08,
-                    left: size.width * 0.05,
-                    right: size.width * 0.05,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Center(
-                              child: Text(
-                                "And some of my freelance works.\n",
-                                style: GoogleFonts.caveat(
-                                  fontSize: size.width * 0.015,
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              child: SizedBox(
-                                width: size.width / 3,
-                                child: MouseRegion(
-                                  onEnter: (event) {
-                                    MyApp.scrollLock = true;
-                                  },
-                                  onExit: (event) {
-                                    MyApp.scrollLock = false;
-                                  },
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: const BouncingScrollPhysics(),
-                                      itemCount: freelance.length,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(
-                                            bottom: size.width * 0.01,
-                                            left: size.width * 0.02,
-                                            right: size.width * 0.02,
-                                          ),
-                                          child: MouseRegion(
-                                            cursor: SystemMouseCursors.click,
-                                            onEnter: (event) {
-                                              if (mounted) {
-                                                setState(() {
-                                                  hoverIndex3 = index;
-                                                });
-                                              }
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colours.primary,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: size.width * 0.12,
+                        ),
+                        Flexible(
+                          child: SizedBox(
+                            width: size.width / 3,
+                            child: AnimatedPadding(
+                              duration: const Duration(milliseconds: 500),
+                              padding: MyApp.startExp
+                                  ? EdgeInsets.zero
+                                  : EdgeInsets.only(
+                                      left: size.width * 0.05,
+                                      right: size.width * 0.05,
+                                    ),
+                              child: MouseRegion(
+                                onEnter: (event) {
+                                  MyApp.scrollLock = true;
+                                },
+                                onExit: (event) {
+                                  MyApp.scrollLock = false;
+                                },
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    itemCount: projects.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                          top: size.width * 0.005,
+                                          bottom: size.width * 0.005,
+                                          left: size.width * 0.02,
+                                          right: size.width * 0.02,
+                                        ),
+                                        child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          onEnter: (event) {
+                                            if (mounted) {
+                                              setState(() {
+                                                hoverIndex2 = index;
+                                              });
+                                            }
+                                          },
+                                          onExit: (event) {
+                                            if (mounted) {
+                                              setState(() {
+                                                hoverIndex2 = -1;
+                                              });
+                                            }
+                                          },
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              _launchUrl(
+                                                  projects[index]['link']!);
                                             },
-                                            onExit: (event) {
-                                              if (mounted) {
-                                                setState(() {
-                                                  hoverIndex3 = -1;
-                                                });
-                                              }
-                                            },
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                _launchUrl(
-                                                    freelance[index]['link']!);
-                                              },
-                                              child: AnimatedPadding(
-                                                duration: const Duration(
-                                                    milliseconds: 200),
-                                                padding: hoverIndex3 != index
-                                                    ? EdgeInsets.zero
-                                                    : EdgeInsets.only(
+                                            child: AnimatedPadding(
+                                              duration: const Duration(
+                                                  milliseconds: 200),
+                                              padding: hoverIndex2 != index
+                                                  ? EdgeInsets.zero
+                                                  : EdgeInsets.only(
+                                                      left: size.width * 0.01,
+                                                      right: size.width * 0.01,
+                                                    ),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    opacity:
+                                                        hoverIndex2 == index
+                                                            ? 0.75
+                                                            : 0.5,
+                                                    image: AssetImage(
+                                                        projects[index]
+                                                            ['image']!),
+                                                  ),
+                                                  color: Colors.black12,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          size.width * 0.01),
+                                                ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: size.width * 0.02,
                                                         left: size.width * 0.01,
                                                         right:
                                                             size.width * 0.01,
                                                       ),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      opacity:
-                                                          hoverIndex3 == index
-                                                              ? 0.75
-                                                              : 0.5,
-                                                      image: AssetImage(
-                                                          freelance[index]
-                                                              ['image']!),
+                                                      child: Text(
+                                                        projects[index]
+                                                            ['title']!,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colours.text1,
+                                                          fontSize:
+                                                              size.width * 0.01,
+                                                        ),
+                                                      ),
                                                     ),
-                                                    color: Colours.primary
-                                                        .withOpacity(0.25),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            size.width * 0.01),
-                                                  ),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                          top:
-                                                              size.width * 0.02,
-                                                          left:
-                                                              size.width * 0.01,
-                                                          right:
-                                                              size.width * 0.01,
-                                                        ),
-                                                        child: Text(
-                                                          freelance[index]
-                                                              ['title']!,
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize:
-                                                                size.width *
-                                                                    0.01,
-                                                          ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: size.width * 0.001,
+                                                        left: size.width * 0.01,
+                                                        right:
+                                                            size.width * 0.01,
+                                                      ),
+                                                      child: Text(
+                                                        projects[index]
+                                                            ['role']!,
+                                                        style: TextStyle(
+                                                          fontSize: size.width *
+                                                              0.007,
+                                                          color: Colours.text,
                                                         ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                          top:
-                                                              size.width * 0.01,
-                                                          left:
-                                                              size.width * 0.01,
-                                                          right:
-                                                              size.width * 0.01,
-                                                          bottom:
-                                                              size.width * 0.02,
-                                                        ),
-                                                        child: Text(
-                                                          freelance[index]
-                                                              ['sub-title']!,
-                                                          style: TextStyle(
-                                                            fontSize:
-                                                                size.width *
-                                                                    0.008,
-                                                            color: Colors
-                                                                .grey[800],
-                                                          ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: size.width * 0.01,
+                                                        left: size.width * 0.01,
+                                                        right:
+                                                            size.width * 0.01,
+                                                        bottom:
+                                                            size.width * 0.02,
+                                                      ),
+                                                      child: Text(
+                                                        projects[index]
+                                                            ['sub-title']!,
+                                                        style: TextStyle(
+                                                          fontSize: size.width *
+                                                              0.008,
+                                                          color: Colours.text,
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        );
-                                      }),
-                                ),
+                                        ),
+                                      );
+                                    }),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          right: size.width * 0.02,
-                          bottom: size.width * 0.02,
+                        AnimatedPadding(
+                          duration: const Duration(milliseconds: 500),
+                          padding: MyApp.startExp
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(top: size.width * 0.01),
+                          child: Text(
+                            "These are some of my favourite projects.\n",
+                            style: GoogleFonts.caveat(
+                              fontSize: size.width * 0.015,
+                              color: Colours.text1,
+                            ),
+                          ),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: size.height * 0.02),
-                              child: Text(
-                                "Impressed? Let's connect.",
-                                textAlign: TextAlign.end,
-                                style: GoogleFonts.caveat(
-                                  fontSize: size.width * 0.012,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            RotatedBox(
-                              quarterTurns: 2,
-                              child: Lottie.network(
-                                "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
-                                height: size.width * 0.05,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    left: size.width * 0.005,
-                                    right: size.width * 0.005,
-                                  ),
-                                  child: MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        _launchUrl(_mailUrl);
-                                      },
-                                      child: Icon(
-                                        Icons.mail,
-                                        size: size.width * 0.012,
-                                        color: Colors.grey[800],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    left: size.width * 0.005,
-                                    right: size.width * 0.005,
-                                  ),
-                                  child: MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        _launchUrl(_whatsAppUrl);
-                                      },
-                                      child: FaIcon(
-                                        FontAwesomeIcons.whatsapp,
-                                        size: size.width * 0.012,
-                                        color: Colors.grey[800],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    left: size.width * 0.005,
-                                    right: size.width * 0.005,
-                                  ),
-                                  child: MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        _launchUrl(_telegramUrl);
-                                      },
-                                      child: FaIcon(
-                                        FontAwesomeIcons.telegram,
-                                        size: size.width * 0.012,
-                                        color: Colors.grey[800],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: AnimatedPadding(
+                    duration: const Duration(milliseconds: 500),
+                    padding: MyApp.startExp
+                        ? EdgeInsets.zero
+                        : EdgeInsets.only(
+                            left: size.width * 0.05,
+                            right: size.width * 0.05,
+                          ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Center(
+                          child: Text(
+                            "And some of my freelance works.\n",
+                            style: GoogleFonts.caveat(
+                              fontSize: size.width * 0.015,
+                              color: Colours.text1,
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: SizedBox(
+                            width: size.width / 3,
+                            child: MouseRegion(
+                              onEnter: (event) {
+                                MyApp.scrollLock = true;
+                              },
+                              onExit: (event) {
+                                MyApp.scrollLock = false;
+                              },
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: freelance.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: EdgeInsets.only(
+                                        bottom: size.width * 0.01,
+                                        left: size.width * 0.02,
+                                        right: size.width * 0.02,
+                                      ),
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        onEnter: (event) {
+                                          if (mounted) {
+                                            setState(() {
+                                              hoverIndex3 = index;
+                                            });
+                                          }
+                                        },
+                                        onExit: (event) {
+                                          if (mounted) {
+                                            setState(() {
+                                              hoverIndex3 = -1;
+                                            });
+                                          }
+                                        },
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            _launchUrl(
+                                                freelance[index]['link']!);
+                                          },
+                                          child: AnimatedPadding(
+                                            duration: const Duration(
+                                                milliseconds: 200),
+                                            padding: hoverIndex3 != index
+                                                ? EdgeInsets.zero
+                                                : EdgeInsets.only(
+                                                    left: size.width * 0.01,
+                                                    right: size.width * 0.01,
+                                                  ),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  opacity: hoverIndex3 == index
+                                                      ? 0.75
+                                                      : 0.5,
+                                                  image: AssetImage(
+                                                      freelance[index]
+                                                          ['image']!),
+                                                ),
+                                                color: Colours.primary
+                                                    .withOpacity(0.25),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        size.width * 0.01),
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: size.width * 0.02,
+                                                      left: size.width * 0.01,
+                                                      right: size.width * 0.01,
+                                                    ),
+                                                    child: Text(
+                                                      freelance[index]
+                                                          ['title']!,
+                                                      style: TextStyle(
+                                                        color: Colours.text1,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize:
+                                                            size.width * 0.01,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: size.width * 0.01,
+                                                      left: size.width * 0.01,
+                                                      right: size.width * 0.01,
+                                                      bottom: size.width * 0.02,
+                                                    ),
+                                                    child: Text(
+                                                      freelance[index]
+                                                          ['sub-title']!,
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            size.width * 0.008,
+                                                        color: Colours.text,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "M",
-                style: GoogleFonts.kanit(
-                  fontSize: size.width * 0.05,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[800],
-                ),
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 700),
+            opacity: MyApp.startExp ? 0 : 1,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "M",
+                    style: GoogleFonts.kanit(
+                      fontSize: size.width * 0.05,
+                      fontWeight: FontWeight.bold,
+                      color: Colours.text,
+                    ),
+                  ),
+                  Text(
+                    "Y EXPERIENC",
+                    style: GoogleFonts.kanit(
+                      fontSize: size.width * 0.05,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    "E.",
+                    style: GoogleFonts.kanit(
+                      fontSize: size.width * 0.05,
+                      fontWeight: FontWeight.bold,
+                      color: Colours.text,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                "Y EXPERIENC",
-                style: GoogleFonts.kanit(
-                  fontSize: size.width * 0.05,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                "E.",
-                style: GoogleFonts.kanit(
-                  fontSize: size.width * 0.05,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[800],
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+          AnimatedPositioned(
+            height: size.height,
+            width: size.width,
+            duration: const Duration(milliseconds: 500),
+            right: MyApp.startExp ? -100 : 0,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  right: size.width * 0.05,
+                  bottom: size.height * 0.1,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: size.height * 0.02),
+                      child: Text(
+                        "Impressed? Let's connect.",
+                        textAlign: TextAlign.end,
+                        style: GoogleFonts.caveat(
+                          fontSize: size.width * 0.012,
+                          color: Colours.text1,
+                        ),
+                      ),
+                    ),
+                    RotatedBox(
+                      quarterTurns: 2,
+                      child: Lottie.network(
+                        "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
+                        height: size.width * 0.05,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: size.width * 0.005,
+                            right: size.width * 0.005,
+                          ),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                _launchUrl(_mailUrl);
+                              },
+                              child: Icon(
+                                Icons.mail,
+                                size: size.width * 0.012,
+                                color: Colours.text,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: size.width * 0.005,
+                            right: size.width * 0.005,
+                          ),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                _launchUrl(_whatsAppUrl);
+                              },
+                              child: FaIcon(
+                                FontAwesomeIcons.whatsapp,
+                                size: size.width * 0.012,
+                                color: Colours.text,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: size.width * 0.005,
+                            right: size.width * 0.005,
+                          ),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                _launchUrl(_telegramUrl);
+                              },
+                              child: FaIcon(
+                                FontAwesomeIcons.telegram,
+                                size: size.width * 0.012,
+                                color: Colours.text,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

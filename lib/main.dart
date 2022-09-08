@@ -6,16 +6,42 @@ import 'package:portfolio/contact/contact.dart';
 import 'package:portfolio/experience/experience.dart';
 import 'package:portfolio/home/home.dart';
 import 'package:portfolio/skills/skills.dart';
+import 'package:portfolio/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  static bool startHome = true;
+  static bool startAbout = true;
+  static bool startSkill = true;
+  static bool startExp = true;
+  static bool startCont = true;
   static bool scrollLock = false;
   static int index = 0;
   static final PageController controller = PageController();
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _splash = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      if (mounted) {
+        setState(() {
+          _splash = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +52,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.latoTextTheme(),
       ),
-      home: const View(),
+      home: Stack(
+        children: [
+          const View(),
+          if (_splash) const SplashPage(),
+        ],
+      ),
     );
   }
 }
@@ -427,7 +458,9 @@ class _ViewState extends State<View> {
 }
 
 class Colours {
-  static Color bg = const Color(0xFFCE96FB).withOpacity(0.5);
+  static Color bg = Colors.white54;
   static Color primary = const Color(0xFFCE96FB);
   static Color secondary = const Color(0xFFCF9FFF);
+  static Color text = Colors.grey[800]!;
+  static Color text1 = Colors.grey[900]!;
 }
