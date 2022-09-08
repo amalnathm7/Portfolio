@@ -26,107 +26,123 @@ class _ContactPageState extends State<ContactPage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.08,
-                      bottom: size.width * 0.01,
-                    ),
-                    child: Text(
-                      "I would love to discuss more opportunities. So shoot away!",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.caveat(
-                        fontSize: size.width * 0.014,
-                      ),
+                  Expanded(
+                    child: Lottie.network(
+                      "https://assets8.lottiefiles.com/private_files/lf30_yPKMfX.json",
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.01,
-                      bottom: size.width * 0.01,
-                    ),
-                    child: SizedBox(
-                      width: size.width * 0.2,
-                      child: TextField(
-                        cursorColor: Colours.primary,
-                        decoration: const InputDecoration(
-                          hintText: "Name",
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        bottom: size.width * 0.01,
+                      ),
+                      child: Text(
+                        "I would love to discuss more opportunities. So shoot away!",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.caveat(
+                          fontSize: size.width * 0.014,
                         ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.01,
-                      bottom: size.width * 0.01,
-                    ),
-                    child: SizedBox(
-                      width: size.width * 0.2,
-                      child: TextField(
-                        cursorColor: Colours.primary,
-                        decoration: const InputDecoration(
-                          hintText: "Email",
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: size.width * 0.01,
+                        bottom: size.width * 0.01,
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.01,
-                      bottom: size.width * 0.01,
-                    ),
-                    child: SizedBox(
-                      width: size.width * 0.2,
-                      child: TextField(
-                        cursorColor: Colours.primary,
-                        decoration: const InputDecoration(
-                          hintText: "Project Domain",
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.01,
-                      bottom: size.width * 0.01,
-                    ),
-                    child: SizedBox(
-                      width: size.width * 0.2,
-                      child: TextField(
-                        minLines: 5,
-                        maxLines: 10,
-                        cursorColor: Colours.primary,
-                        decoration: const InputDecoration(
-                          hintText: "Project Description",
-                          border: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.01,
-                      bottom: size.width * 0.01,
-                    ),
-                    child: MaterialButton(
-                      color: Colours.primary,
-                      onPressed: () {},
                       child: SizedBox(
-                        height: size.width * 0.018,
-                        width: size.width * 0.07,
-                        child: Center(
-                          child: Text(
-                            "JUST SEND",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.kanit(
-                              fontSize: size.width * 0.008,
-                              color: Colors.white,
+                        width: size.width * 0.2,
+                        child: TextField(
+                          cursorColor: Colours.primary,
+                          decoration: const InputDecoration(
+                            hintText: "Name",
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: size.width * 0.01,
+                        bottom: size.width * 0.01,
+                      ),
+                      child: SizedBox(
+                        width: size.width * 0.2,
+                        child: TextField(
+                          cursorColor: Colours.primary,
+                          decoration: const InputDecoration(
+                            hintText: "Email",
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: size.width * 0.01,
+                        bottom: size.width * 0.01,
+                      ),
+                      child: SizedBox(
+                        width: size.width * 0.2,
+                        child: TextField(
+                          cursorColor: Colours.primary,
+                          decoration: const InputDecoration(
+                            hintText: "Project Domain",
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: size.width * 0.01,
+                        bottom: size.width * 0.01,
+                      ),
+                      child: SizedBox(
+                        width: size.width * 0.2,
+                        child: TextField(
+                          minLines: 5,
+                          maxLines: 10,
+                          cursorColor: Colours.primary,
+                          decoration: const InputDecoration(
+                            hintText: "Project Description",
+                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: size.width * 0.01,
+                        bottom: size.width * 0.01,
+                      ),
+                      child: MaterialButton(
+                        color: Colours.primary,
+                        onPressed: () {},
+                        child: SizedBox(
+                          height: size.width * 0.018,
+                          width: size.width * 0.07,
+                          child: Center(
+                            child: Text(
+                              "JUST SEND",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.kanit(
+                                fontSize: size.width * 0.008,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
