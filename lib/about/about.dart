@@ -1,9 +1,7 @@
 import 'package:portfolio/main.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -13,17 +11,6 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  final String _mailUrl =
-      "mailto:amalnathm7@gmail.com?subject=Hey Amal, I have something exciting for you!";
-  final String _whatsAppUrl = "https://wa.me/917907587380";
-  final String _telegramUrl = "https://t.me/amalnathm7";
-
-  Future<void> _launchUrl(String url) async {
-    if (!await launchUrl(Uri.parse(url))) {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -219,15 +206,6 @@ class _AboutPageState extends State<AboutPage> {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: size.width * 0.03,
-                  ),
-                  child: Lottie.network(
-                    "https://assets3.lottiefiles.com/packages/lf20_qqu8eybe.json",
-                    height: size.width * 0.075,
-                  ),
-                ),
                 Text(
                   "Anything else?",
                   style: GoogleFonts.kanit(
@@ -237,7 +215,19 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
+                  padding: EdgeInsets.only(
+                    left: size.width * 0.03,
+                  ),
+                  child: Lottie.network(
+                    "https://assets3.lottiefiles.com/packages/lf20_qqu8eybe.json",
+                    height: size.width * 0.08,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: size.width * 0.02,
+                    bottom: size.width * 0.05,
+                  ),
                   child: Text(
                     "I can also refer to myself as a software developer\n"
                     "with experience in building cross platform\n"
@@ -249,76 +239,6 @@ class _AboutPageState extends State<AboutPage> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Text(
-                    "Impressed already? Let's connect.",
-                    textAlign: TextAlign.end,
-                    style: GoogleFonts.caveat(
-                      fontSize: size.width * 0.012,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                RotatedBox(
-                  quarterTurns: 2,
-                  child: Lottie.network(
-                    "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
-                    height: size.width * 0.05,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      alignment: Alignment.centerRight,
-                      splashRadius: size.width * 0.01,
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      onPressed: () {
-                        _launchUrl(_mailUrl);
-                      },
-                      icon: Icon(
-                        Icons.mail,
-                        size: size.width * 0.012,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                    IconButton(
-                      alignment: Alignment.centerRight,
-                      splashRadius: size.width * 0.01,
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      onPressed: () {
-                        _launchUrl(_whatsAppUrl);
-                      },
-                      icon: FaIcon(
-                        FontAwesomeIcons.whatsapp,
-                        size: size.width * 0.012,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                    IconButton(
-                      alignment: Alignment.centerRight,
-                      splashRadius: size.width * 0.01,
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      onPressed: () {
-                        _launchUrl(_telegramUrl);
-                      },
-                      icon: FaIcon(
-                        FontAwesomeIcons.telegram,
-                        size: size.width * 0.012,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
@@ -329,17 +249,13 @@ class _AboutPageState extends State<AboutPage> {
             padding: const EdgeInsets.all(20.0),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Lottie.network(
-                      "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
-                      height: size.width * 0.05,),
-                ],
+              child: Lottie.network(
+                "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
+                height: size.width * 0.05,
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

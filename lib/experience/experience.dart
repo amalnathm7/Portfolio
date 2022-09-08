@@ -1,3 +1,5 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:portfolio/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -109,6 +111,11 @@ class _ExperiencePageState extends State<ExperiencePage> {
     },
   ];
 
+  final String _mailUrl =
+      "mailto:amalnathm7@gmail.com?subject=Hey Amal, I have something exciting for you!";
+  final String _whatsAppUrl = "https://wa.me/917907587380";
+  final String _telegramUrl = "https://t.me/amalnathm7";
+
   Future<void> _launchUrl(String url) async {
     if (!await launchUrl(Uri.parse(url))) {
       throw 'Could not launch $url';
@@ -133,7 +140,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                       padding: EdgeInsets.only(
                         left: size.width * 0.03,
                         right: size.width * 0.03,
-                        top: size.width * 0.07,
+                        top: size.width * 0.05,
                         bottom: size.height * 0.02,
                       ),
                       child: Text(
@@ -143,6 +150,12 @@ class _ExperiencePageState extends State<ExperiencePage> {
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[800],
                         ),
+                      ),
+                    ),
+                    Center(
+                      child: Lottie.network(
+                        "https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json",
+                        height: size.width * 0.1,
                       ),
                     ),
                     Padding(
@@ -189,6 +202,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                               MyApp.scrollLock = false;
                             },
                             child: ListView.builder(
+                                shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
                                 itemCount: internships.length,
                                 itemBuilder: (context, index) {
@@ -226,6 +240,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                               ? EdgeInsets.zero
                                               : EdgeInsets.only(
                                                   left: size.width * 0.01,
+                                                  right: size.width * 0.01,
                                                 ),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -339,6 +354,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                 MyApp.scrollLock = false;
                               },
                               child: ListView.builder(
+                                  shrinkWrap: true,
                                   physics: const BouncingScrollPhysics(),
                                   itemCount: projects.length,
                                   itemBuilder: (context, index) {
@@ -482,12 +498,14 @@ class _ExperiencePageState extends State<ExperiencePage> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        "And some of my freelance works.\n",
-                        style: GoogleFonts.caveat(
-                          fontSize: size.width * 0.015,
+                      Center(
+                        child: Text(
+                          "And some of my freelance works.\n",
+                          style: GoogleFonts.caveat(
+                            fontSize: size.width * 0.015,
+                          ),
                         ),
                       ),
                       Flexible(
@@ -501,6 +519,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                               MyApp.scrollLock = false;
                             },
                             child: ListView.builder(
+                                shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
                                 itemCount: freelance.length,
                                 itemBuilder: (context, index) {
@@ -536,6 +555,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                           padding: hoverIndex3 != index
                                               ? EdgeInsets.zero
                                               : EdgeInsets.only(
+                                                  left: size.width * 0.01,
                                                   right: size.width * 0.01,
                                                 ),
                                           child: Container(
@@ -600,6 +620,88 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                   );
                                 }),
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: size.width * 0.15,
+                          right: size.width * 0.02,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: size.height * 0.02),
+                              child: Text(
+                                "Impressed? Let's connect.",
+                                textAlign: TextAlign.end,
+                                style: GoogleFonts.caveat(
+                                  fontSize: size.width * 0.012,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            RotatedBox(
+                              quarterTurns: 2,
+                              child: Lottie.network(
+                                "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
+                                height: size.width * 0.05,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  alignment: Alignment.centerRight,
+                                  splashRadius: size.width * 0.01,
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  onPressed: () {
+                                    _launchUrl(_mailUrl);
+                                  },
+                                  icon: Icon(
+                                    Icons.mail,
+                                    size: size.width * 0.012,
+                                    color: Colors.grey[800],
+                                  ),
+                                ),
+                                IconButton(
+                                  alignment: Alignment.centerRight,
+                                  splashRadius: size.width * 0.01,
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  onPressed: () {
+                                    _launchUrl(_whatsAppUrl);
+                                  },
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.whatsapp,
+                                    size: size.width * 0.012,
+                                    color: Colors.grey[800],
+                                  ),
+                                ),
+                                IconButton(
+                                  alignment: Alignment.centerRight,
+                                  splashRadius: size.width * 0.01,
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  onPressed: () {
+                                    _launchUrl(_telegramUrl);
+                                  },
+                                  icon: FaIcon(
+                                    FontAwesomeIcons.telegram,
+                                    size: size.width * 0.012,
+                                    color: Colors.grey[800],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ],
