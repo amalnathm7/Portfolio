@@ -410,7 +410,6 @@ class _ViewState extends State<View> {
           controller: MyApp.controller,
           child: PageView(
             scrollDirection: Axis.vertical,
-            scrollBehavior: MyCustomScrollBehavior(),
             physics: const NeverScrollableScrollPhysics(),
             controller: MyApp.controller,
             children: const [
@@ -431,11 +430,4 @@ class Colours {
   static Color bg = Colors.white54;
   static Color primary = const Color(0xFFCE96FB);
   static Color secondary = const Color(0xFFCF9FFF);
-}
-
-class MyCustomScrollBehavior extends MaterialScrollBehavior {
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-      };
 }
