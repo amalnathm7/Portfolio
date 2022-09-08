@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                     ),
                     Text(
-                      "WHAT HAVE I DONE?",
+                      "WHAT DO I KNOW?",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: size.width * 0.008,
@@ -270,7 +270,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                     ),
                     Text(
-                      "WHAT DO I KNOW?",
+                      "WHAT HAVE I DONE?",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: size.width * 0.008,

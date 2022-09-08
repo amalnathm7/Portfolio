@@ -242,7 +242,7 @@ class _ViewState extends State<View> {
                       ),
                     ),
                     Text(
-                      "EXPERIENCE",
+                      "SKILLS",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: size.width * 0.007,
@@ -301,7 +301,7 @@ class _ViewState extends State<View> {
                       ),
                     ),
                     Text(
-                      "SKILLS",
+                      "EXPERIENCE",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: size.width * 0.007,
@@ -413,11 +413,11 @@ class _ViewState extends State<View> {
             physics: const NeverScrollableScrollPhysics(),
             controller: MyApp.controller,
             children: const [
-              ContactPage(),
               HomePage(),
               AboutPage(),
-              ExperiencePage(),
               SkillsPage(),
+              ExperiencePage(),
+              ContactPage(),
             ],
           ),
         ),
@@ -427,7 +427,7 @@ class _ViewState extends State<View> {
 }
 
 class Colours {
-  static Color bg = Colors.white54;
+  static Color bg = const Color(0xFFCE96FB).withOpacity(0.5);
   static Color primary = const Color(0xFFCE96FB);
   static Color secondary = const Color(0xFFCF9FFF);
 }
