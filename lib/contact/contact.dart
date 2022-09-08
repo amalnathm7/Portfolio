@@ -86,13 +86,18 @@ class _ContactPageState extends State<ContactPage> {
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              style: TextStyle(
+                                fontSize: size.width * 0.008,
+                                color: Colours.text,
+                              ),
                               controller: _nameController,
                               cursorColor: Colours.primary,
                               decoration: InputDecoration(
                                 hintText: "Name",
                                 hintStyle: TextStyle(
-                                    fontSize: size.width * 0.008,
-                                    color: Colours.text.withOpacity(0.75)),
+                                  fontSize: size.width * 0.008,
+                                  color: Colours.text.withOpacity(0.75),
+                                ),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
@@ -111,11 +116,16 @@ class _ContactPageState extends State<ContactPage> {
                             child: TextField(
                               controller: _emailController,
                               cursorColor: Colours.primary,
+                              style: TextStyle(
+                                fontSize: size.width * 0.008,
+                                color: Colours.text,
+                              ),
                               decoration: InputDecoration(
                                 hintText: "Email",
                                 hintStyle: TextStyle(
-                                    fontSize: size.width * 0.008,
-                                    color: Colours.text.withOpacity(0.75)),
+                                  fontSize: size.width * 0.008,
+                                  color: Colours.text.withOpacity(0.75),
+                                ),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
@@ -132,13 +142,18 @@ class _ContactPageState extends State<ContactPage> {
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              style: TextStyle(
+                                fontSize: size.width * 0.008,
+                                color: Colours.text,
+                              ),
                               controller: _domainController,
                               cursorColor: Colours.primary,
                               decoration: InputDecoration(
                                 hintText: "Project Domain",
                                 hintStyle: TextStyle(
-                                    fontSize: size.width * 0.008,
-                                    color: Colours.text.withOpacity(0.75)),
+                                  fontSize: size.width * 0.008,
+                                  color: Colours.text.withOpacity(0.75),
+                                ),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
@@ -155,6 +170,10 @@ class _ContactPageState extends State<ContactPage> {
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              style: TextStyle(
+                                fontSize: size.width * 0.008,
+                                color: Colours.text,
+                              ),
                               controller: _descController,
                               minLines: 5,
                               maxLines: 10,
@@ -162,8 +181,9 @@ class _ContactPageState extends State<ContactPage> {
                               decoration: InputDecoration(
                                 hintText: "Project Description",
                                 hintStyle: TextStyle(
-                                    fontSize: size.width * 0.008,
-                                    color: Colours.text.withOpacity(0.75)),
+                                  fontSize: size.width * 0.008,
+                                  color: Colours.text.withOpacity(0.75),
+                                ),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
