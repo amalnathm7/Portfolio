@@ -121,12 +121,21 @@ class _AboutPageState extends State<AboutPage> {
               Padding(
                 padding: EdgeInsets.only(
                   left: size.width * 0.03,
+                ),
+                child: Lottie.network(
+                  "https://assets3.lottiefiles.com/private_files/lf30_GjhcdO.json",
+                  height: size.width * 0.075,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: size.width * 0.03,
                   right: size.width * 0.03,
                   top: size.height * 0.02,
                   bottom: size.height * 0.02,
                 ),
                 child: Text(
-                  "Well, that's a philosophical question\nif you ask me. Nah, just kidding.",
+                  "Well, that's a philosophical question\nif you ask me.\nNah, just kidding.",
                   style: GoogleFonts.caveat(
                     fontSize: size.width * 0.015,
                     fontWeight: FontWeight.bold,
@@ -209,6 +218,15 @@ class _AboutPageState extends State<AboutPage> {
                 ),
                 SizedBox(
                   height: size.height * 0.03,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: size.width * 0.03,
+                  ),
+                  child: Lottie.network(
+                    "https://assets3.lottiefiles.com/packages/lf20_qqu8eybe.json",
+                    height: size.width * 0.075,
+                  ),
                 ),
                 Text(
                   "Anything else?",
@@ -305,17 +323,20 @@ class _AboutPageState extends State<AboutPage> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Lottie.network(
-                    "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
-                    height: size.width * 0.05),
-              ],
+        Opacity(
+          opacity: 0.25,
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Lottie.network(
+                      "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
+                      height: size.width * 0.05,),
+                ],
+              ),
             ),
           ),
         )

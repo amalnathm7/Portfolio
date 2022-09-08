@@ -110,10 +110,10 @@ class _ViewState extends State<View> {
           physics: const NeverScrollableScrollPhysics(),
           controller: MyApp.controller,
           children: const [
+            SkillsPage(),
             HomePage(),
             AboutPage(),
             ExperiencePage(),
-            SkillsPage(),
             ContactPage(),
           ],
         ),

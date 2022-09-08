@@ -333,61 +333,76 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          AnimatedPositioned(
-            bottom: size.height * 0.3,
-            left: _menu ? -200 : size.width * 0,
-            duration: const Duration(milliseconds: 500),
-            child: Transform.scale(
-              scaleX: -1,
-              child: RotatedBox(
-                quarterTurns: 0,
-                child: Lottie.network(
-                  "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
-                  height: size.width * 0.075,
-                ),
-              ),
-            ),
-          ),
-          AnimatedPositioned(
-            bottom: size.height * 0.25,
-            left: _menu ? -200 : 20,
-            duration: const Duration(milliseconds: 500),
-            child: Text(
-              "You can jump into\nmy life here",
-              style: GoogleFonts.caveat(
-                fontSize: size.width * 0.015,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RotatedBox(
-                quarterTurns: 3,
-                child: IconButton(
-                  splashRadius: size.width * 0.01,
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  onPressed: () {
-                    setState(() {
-                      _menu = !_menu;
-                    });
-
-                    _menu
-                        ? _animationController!.forward()
-                        : _animationController!.reverse();
-                  },
-                  icon: AnimatedIcon(
-                    size: size.width * 0.02,
-                    icon: AnimatedIcons.menu_close,
-                    progress: _animationController!,
-                    color: Colors.grey[800],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: SizedBox(
+                    height: size.width * 0.1,
                   ),
                 ),
-              ),
+                Flexible(
+                  child: RotatedBox(
+                    quarterTurns: 3,
+                    child: IconButton(
+                      splashRadius: size.width * 0.01,
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      onPressed: () {
+                        setState(() {
+                          _menu = !_menu;
+                        });
+
+                        _menu
+                            ? _animationController!.forward()
+                            : _animationController!.reverse();
+                      },
+                      icon: AnimatedIcon(
+                        size: size.width * 0.02,
+                        icon: AnimatedIcons.menu_close,
+                        progress: _animationController!,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 500),
+                    opacity: _menu ? 0 : 1,
+                    child: Transform.scale(
+                      scaleX: -1,
+                      child: RotatedBox(
+                        quarterTurns: 0,
+                        child: Lottie.network(
+                          "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
+                          height: size.width * 0.075,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: size.width * 0.02),
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 500),
+                      opacity: _menu ? 0 : 1,
+                      child: Text(
+                        "You can jump into\nmy life here",
+                        style: GoogleFonts.caveat(
+                          fontSize: size.width * 0.015,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           AnimatedPadding(
@@ -400,90 +415,102 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    height: size.width * 0.18,
-                    width: size.width * 0.18,
-                    decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.25),
-                        borderRadius: BorderRadius.circular(size.width / 20)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(size.width / 20),
-                      child: Image.asset(
-                        "assets/pic1.png",
+                  Flexible(
+                    child: Container(
+                      height: size.width * 0.18,
+                      width: size.width * 0.18,
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.25),
+                          borderRadius: BorderRadius.circular(size.width / 20)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(size.width / 20),
+                        child: Image.asset(
+                          "assets/pic1.png",
+                        ),
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "HEL",
-                        style: GoogleFonts.kanit(
-                          fontSize: size.width * 0.1,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[800],
+                  Flexible(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            "HEL",
+                            style: GoogleFonts.kanit(
+                              fontSize: size.width * 0.1,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey[800],
+                            ),
+                          ),
                         ),
-                      ),
-                      Text(
-                        "LO.",
-                        style: GoogleFonts.kanit(
-                          fontSize: size.width * 0.1,
-                          fontWeight: FontWeight.bold,
-                          color: Colours.primary,
+                        Flexible(
+                          child: Text(
+                            "LO.",
+                            style: GoogleFonts.kanit(
+                              fontSize: size.width * 0.1,
+                              fontWeight: FontWeight.bold,
+                              color: Colours.primary,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Text(
-                    "I'm Amal Nath, a student, programmer and software developer",
-                    style: GoogleFonts.caveat(
-                      fontSize: size.width * 0.02,
+                  Flexible(
+                    child: Text(
+                      "I'm Amal Nath, a student, programmer and software developer",
+                      style: GoogleFonts.caveat(
+                        fontSize: size.width * 0.02,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          AnimatedPositioned(
-            top: size.height * 0.25,
-            right: _menu ? -200 : 20,
-            duration: const Duration(milliseconds: 500),
-            child: Text(
-              "I'm active in\nthese platforms",
-              style: GoogleFonts.caveat(
-                fontSize: size.width * 0.015,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          AnimatedPositioned(
-            top: size.height * 0.3,
-            right: _menu ? -200 : size.width * 0,
-            duration: const Duration(milliseconds: 500),
-            child: Transform.scale(
-              scaleX: -1,
-              child: RotatedBox(
-                quarterTurns: 2,
-                child: Lottie.network(
-                  "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
-                  height: size.width * 0.075,
+          Align(
+            alignment: Alignment.centerRight,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: size.width * 0.02),
+                    child: AnimatedOpacity(
+                      opacity: _menu ? 0 : 1,
+                      duration: const Duration(milliseconds: 500),
+                      child: Text(
+                        "I'm active in\nthese platforms",
+                        style: GoogleFonts.caveat(
+                          fontSize: size.width * 0.015,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          AnimatedPadding(
-            duration: const Duration(milliseconds: 500),
-            padding: _menu
-                ? EdgeInsets.only(right: size.width * 0.03)
-                : EdgeInsets.only(right: size.width * 0.01),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
+                Flexible(
+                  child: AnimatedOpacity(
+                    opacity: _menu ? 0 : 1,
+                    duration: const Duration(milliseconds: 500),
+                    child: Transform.scale(
+                      scaleX: -1,
+                      child: RotatedBox(
+                        quarterTurns: 2,
+                        child: Lottie.network(
+                          "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
+                          height: size.width * 0.075,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: IconButton(
                     splashRadius: size.width * 0.01,
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
@@ -497,7 +524,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       color: Colors.grey[800],
                     ),
                   ),
-                  IconButton(
+                ),
+                Flexible(
+                  child: IconButton(
                     splashRadius: size.width * 0.01,
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
@@ -511,7 +540,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       color: Colors.grey[800],
                     ),
                   ),
-                  IconButton(
+                ),
+                Flexible(
+                  child: IconButton(
                     splashRadius: size.width * 0.01,
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
@@ -525,7 +556,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       color: Colors.grey[800],
                     ),
                   ),
-                  IconButton(
+                ),
+                Flexible(
+                  child: IconButton(
                     splashRadius: size.width * 0.01,
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
@@ -539,25 +572,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       color: Colors.grey[800],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          if (!_menu)
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Lottie.network(
-                        "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
-                        height: size.width * 0.05),
-                  ],
-                ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 500),
+              opacity: _menu ? 0 : 0.25,
+              child: Lottie.network(
+                "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
+                height: size.width * 0.05,
+                width: size.width * 0.05,
               ),
             ),
+          )
         ],
       ),
     );
