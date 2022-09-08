@@ -12,6 +12,19 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _domainController = TextEditingController();
+  final _descController = TextEditingController();
+
+  Future<bool> _send() async {
+    _nameController.clear();
+    _emailController.clear();
+    _domainController.clear();
+    _descController.clear();
+    return true;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -73,13 +86,13 @@ class _ContactPageState extends State<ContactPage> {
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              controller: _nameController,
                               cursorColor: Colours.primary,
                               decoration: InputDecoration(
                                 hintText: "Name",
                                 hintStyle: TextStyle(
-                                  fontSize: size.width * 0.008,
-                                  color: Colours.text.withOpacity(0.75)
-                                ),
+                                    fontSize: size.width * 0.008,
+                                    color: Colours.text.withOpacity(0.75)),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
@@ -96,13 +109,13 @@ class _ContactPageState extends State<ContactPage> {
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              controller: _emailController,
                               cursorColor: Colours.primary,
                               decoration: InputDecoration(
                                 hintText: "Email",
                                 hintStyle: TextStyle(
                                     fontSize: size.width * 0.008,
-                                    color: Colours.text.withOpacity(0.75)
-                                ),
+                                    color: Colours.text.withOpacity(0.75)),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
@@ -119,13 +132,13 @@ class _ContactPageState extends State<ContactPage> {
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              controller: _domainController,
                               cursorColor: Colours.primary,
                               decoration: InputDecoration(
                                 hintText: "Project Domain",
                                 hintStyle: TextStyle(
                                     fontSize: size.width * 0.008,
-                                    color: Colours.text.withOpacity(0.75)
-                                ),
+                                    color: Colours.text.withOpacity(0.75)),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
@@ -142,6 +155,7 @@ class _ContactPageState extends State<ContactPage> {
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
+                              controller: _descController,
                               minLines: 5,
                               maxLines: 10,
                               cursorColor: Colours.primary,
@@ -149,8 +163,7 @@ class _ContactPageState extends State<ContactPage> {
                                 hintText: "Project Description",
                                 hintStyle: TextStyle(
                                     fontSize: size.width * 0.008,
-                                    color: Colours.text.withOpacity(0.75)
-                                ),
+                                    color: Colours.text.withOpacity(0.75)),
                                 border: const OutlineInputBorder(),
                                 focusedBorder: const OutlineInputBorder(),
                               ),
@@ -166,7 +179,9 @@ class _ContactPageState extends State<ContactPage> {
                           ),
                           child: MaterialButton(
                             color: Colours.primary,
-                            onPressed: () {},
+                            onPressed: () async {
+                              await _send();
+                            },
                             child: SizedBox(
                               height: size.width * 0.018,
                               width: size.width * 0.07,
