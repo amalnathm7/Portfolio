@@ -75,6 +75,14 @@ class _ViewState extends State<View> {
   @override
   void initState() {
     super.initState();
+    MyApp.controller.addListener(() {
+      if (mounted) {
+        setState(() {
+          MyApp.index = MyApp.controller.page!.toInt();
+          _menuIndex = MyApp.index;
+        });
+      }
+    });
   }
 
   @override
@@ -440,6 +448,7 @@ class _ViewState extends State<View> {
         child: Scrollbar(
           controller: MyApp.controller,
           child: PageView(
+            pageSnapping: false,
             scrollDirection: Axis.vertical,
             physics: const NeverScrollableScrollPhysics(),
             controller: MyApp.controller,
