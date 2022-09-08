@@ -65,22 +65,287 @@ class _SkillsPageState extends State<SkillsPage> {
                 ),
               ],
             ),
+            Lottie.network(
+              "https://assets6.lottiefiles.com/packages/lf20_kkflmtur.json",
+              height: size.width * 0.1,
+            ),
           ],
         ),
-        Opacity(
-          opacity: 0.25,
+        Align(
+          alignment: Alignment.topCenter,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Lottie.network(
-                    "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
-                    height: size.width * 0.05,),
-                ],
-              ),
+            padding: EdgeInsets.only(
+              left: size.width * 0.05,
+              right: size.width * 0.05,
+              top: size.width * 0.02,
+              bottom: size.width * 0.02,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Flutter",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets9.lottiefiles.com/private_files/lf30_72kogvb9.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Firebase",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets2.lottiefiles.com/private_files/lf30_52jsgl4a.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.all(size.width * 0.1),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Android Native",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets9.lottiefiles.com/packages/lf20_9F1pkg.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "SQL",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets4.lottiefiles.com/private_files/lf30_w11f2rwn.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.05,
+              right: size.width * 0.05,
+              top: size.width * 0.02,
+              bottom: size.width * 0.02,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "C",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets4.lottiefiles.com/private_files/lf30_8wwkvgel.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Java",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets7.lottiefiles.com/packages/lf20_zh6xtlj9.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: EdgeInsets.all(size.width * 0.1),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Python",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets8.lottiefiles.com/packages/lf20_2znxgjyt.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: size.width * 0.1,
+                  width: size.width * 0.08,
+                  padding: EdgeInsets.all(size.width * 0.01),
+                  decoration: BoxDecoration(
+                    color: Colours.primary.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(size.width * 0.01),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "GitHub",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.012,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      Flexible(
+                        child: Lottie.network(
+                          "https://assets7.lottiefiles.com/packages/lf20_cwqf5i6h.json",
+                          height: size.width * 0.1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),

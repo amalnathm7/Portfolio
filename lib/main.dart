@@ -105,17 +105,21 @@ class _ViewState extends State<View> {
             }
           }
         },
-        child: PageView(
-          scrollDirection: Axis.vertical,
-          physics: const NeverScrollableScrollPhysics(),
+        child: Scrollbar(
           controller: MyApp.controller,
-          children: const [
-            SkillsPage(),
-            HomePage(),
-            AboutPage(),
-            ExperiencePage(),
-            ContactPage(),
-          ],
+          child: PageView(
+            scrollDirection: Axis.vertical,
+            scrollBehavior: MyCustomScrollBehavior(),
+            physics: const NeverScrollableScrollPhysics(),
+            controller: MyApp.controller,
+            children: const [
+              SkillsPage(),
+              ContactPage(),
+              HomePage(),
+              AboutPage(),
+              ExperiencePage(),
+            ],
+          ),
         ),
       ),
     );
@@ -126,4 +130,11 @@ class Colours {
   static Color bg = Colors.white54;
   static Color primary = const Color(0xFFCE96FB);
   static Color secondary = const Color(0xFFCF9FFF);
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+  };
 }

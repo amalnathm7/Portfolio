@@ -204,7 +204,7 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.03,
+                  height: size.height * 0.07,
                 ),
                 Text(
                   "Anything else?",
@@ -240,19 +240,6 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
               ],
-            ),
-          ),
-        ),
-        Opacity(
-          opacity: 0.25,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Lottie.network(
-                "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
-                height: size.width * 0.05,
-              ),
             ),
           ),
         ),
