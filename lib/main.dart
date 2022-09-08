@@ -39,6 +39,8 @@ class View extends StatefulWidget {
 }
 
 class _ViewState extends State<View> {
+  int _menuIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -76,6 +78,303 @@ class _ViewState extends State<View> {
             ),
           ),
         ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.01,
+              right: size.width * 0.01,
+            ),
+            child: MouseRegion(
+              onEnter: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = 0;
+                  });
+                }
+              },
+              onExit: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = MyApp.index;
+                  });
+                }
+              },
+              child: TextButton(
+                onPressed: () {
+                  MyApp.controller.animateToPage(0,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.decelerate);
+                  if (mounted) {
+                    setState(() {
+                      MyApp.index = 0;
+                    });
+                  }
+                },
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: size.width * 0.003,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: size.width * 0.003,
+                        width: _menuIndex == 0 ? size.width * 0.04 : 0,
+                        decoration: BoxDecoration(
+                          color: Colours.primary.withOpacity(0.75),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "HOME",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: size.width * 0.007,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                        color: _menuIndex == 0 ? Colors.grey[800] : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.01,
+              right: size.width * 0.01,
+            ),
+            child: MouseRegion(
+              onEnter: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = 1;
+                  });
+                }
+              },
+              onExit: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = MyApp.index;
+                  });
+                }
+              },
+              child: TextButton(
+                onPressed: () {
+                  MyApp.controller.animateToPage(1,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.decelerate);
+                  if (mounted) {
+                    setState(() {
+                      MyApp.index = 1;
+                    });
+                  }
+                },
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: size.width * 0.003,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: size.width * 0.003,
+                        width: _menuIndex == 1 ? size.width * 0.08 : 0,
+                        decoration: BoxDecoration(
+                          color: Colours.primary.withOpacity(0.75),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "ABOUT",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: size.width * 0.007,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                        color: _menuIndex == 1 ? Colors.grey[800] : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.01,
+              right: size.width * 0.01,
+            ),
+            child: MouseRegion(
+              onEnter: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = 2;
+                  });
+                }
+              },
+              onExit: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = MyApp.index;
+                  });
+                }
+              },
+              child: TextButton(
+                onPressed: () {
+                  MyApp.controller.animateToPage(2,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.decelerate);
+                  if (mounted) {
+                    setState(() {
+                      MyApp.index = 2;
+                    });
+                  }
+                },
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: size.width * 0.003,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: size.width * 0.003,
+                        width: _menuIndex == 2 ? size.width * 0.15 : 0,
+                        decoration: BoxDecoration(
+                          color: Colours.primary.withOpacity(0.75),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "EXPERIENCE",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: size.width * 0.007,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                        color: _menuIndex == 2 ? Colors.grey[800] : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.01,
+              right: size.width * 0.01,
+            ),
+            child: MouseRegion(
+              onEnter: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = 3;
+                  });
+                }
+              },
+              onExit: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = MyApp.index;
+                  });
+                }
+              },
+              child: TextButton(
+                onPressed: () {
+                  MyApp.controller.animateToPage(3,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.decelerate);
+                  if (mounted) {
+                    setState(() {
+                      MyApp.index = 3;
+                    });
+                  }
+                },
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: size.width * 0.003,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: size.width * 0.003,
+                        width: _menuIndex == 3 ? size.width * 0.15 : 0,
+                        decoration: BoxDecoration(
+                          color: Colours.primary.withOpacity(0.75),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "SKILLS",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: size.width * 0.007,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                        color: _menuIndex == 3 ? Colors.grey[800] : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.01,
+              right: size.width * 0.01,
+            ),
+            child: MouseRegion(
+              onEnter: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = 4;
+                  });
+                }
+              },
+              onExit: (event) {
+                if (mounted) {
+                  setState(() {
+                    _menuIndex = MyApp.index;
+                  });
+                }
+              },
+              child: TextButton(
+                onPressed: () {
+                  MyApp.controller.animateToPage(4,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.decelerate);
+                  if (mounted) {
+                    setState(() {
+                      MyApp.index = 4;
+                    });
+                  }
+                },
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: size.width * 0.003,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        height: size.width * 0.003,
+                        width: _menuIndex == 4 ? size.width * 0.15 : 0,
+                        decoration: BoxDecoration(
+                          color: Colours.primary.withOpacity(0.75),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "CONTACT",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: size.width * 0.007,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                        color: _menuIndex == 4 ? Colors.grey[800] : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Listener(
         onPointerSignal: (pointerSignal) {
@@ -88,6 +387,7 @@ class _ViewState extends State<View> {
                 if (mounted) {
                   setState(() {
                     MyApp.index = MyApp.controller.page!.toInt();
+                    _menuIndex = MyApp.index;
                   });
                 }
               });
@@ -99,6 +399,7 @@ class _ViewState extends State<View> {
                 if (mounted) {
                   setState(() {
                     MyApp.index = MyApp.controller.page!.toInt();
+                    _menuIndex = MyApp.index;
                   });
                 }
               });
@@ -113,11 +414,11 @@ class _ViewState extends State<View> {
             physics: const NeverScrollableScrollPhysics(),
             controller: MyApp.controller,
             children: const [
-              SkillsPage(),
               ContactPage(),
               HomePage(),
               AboutPage(),
               ExperiencePage(),
+              SkillsPage(),
             ],
           ),
         ),
@@ -135,6 +436,6 @@ class Colours {
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-    PointerDeviceKind.touch,
-  };
+        PointerDeviceKind.touch,
+      };
 }

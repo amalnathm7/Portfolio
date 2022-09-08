@@ -17,6 +17,17 @@ class _SkillsPageState extends State<SkillsPage> {
 
     return Stack(
       children: [
+        Padding(
+          padding: EdgeInsets.only(
+            left: size.width * 0.15,
+            right: size.width * 0.15,
+            top: size.height * 0.01,
+            bottom: size.height * 0.01,
+          ),
+          child: Container(
+            color: Colours.primary,
+          ),
+        ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +63,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   style: GoogleFonts.kanit(
                     fontSize: size.width * 0.05,
                     fontWeight: FontWeight.bold,
-                    color: Colours.primary,
+                    color: Colors.white,
                   ),
                 ),
                 Text(
@@ -75,10 +86,10 @@ class _SkillsPageState extends State<SkillsPage> {
           alignment: Alignment.topCenter,
           child: Padding(
             padding: EdgeInsets.only(
-              left: size.width * 0.05,
-              right: size.width * 0.05,
-              top: size.width * 0.02,
-              bottom: size.width * 0.02,
+              left: size.width * 0.2,
+              right: size.width * 0.2,
+              top: size.width * 0.03,
+              bottom: size.width * 0.03,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -88,7 +99,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -96,6 +107,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "Flutter",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
@@ -116,7 +128,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -124,6 +136,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "Firebase",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
@@ -146,7 +159,12 @@ class _SkillsPageState extends State<SkillsPage> {
         Align(
           alignment: Alignment.centerLeft,
           child: Padding(
-            padding: EdgeInsets.all(size.width * 0.1),
+            padding: EdgeInsets.only(
+              left: size.width * 0.2,
+              right: size.width * 0.2,
+              top: size.width * 0.03,
+              bottom: size.width * 0.03,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -155,7 +173,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -163,6 +181,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "Android Native",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
@@ -183,7 +202,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -191,6 +210,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "SQL",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
@@ -214,10 +234,10 @@ class _SkillsPageState extends State<SkillsPage> {
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: EdgeInsets.only(
-              left: size.width * 0.05,
-              right: size.width * 0.05,
-              top: size.width * 0.02,
-              bottom: size.width * 0.02,
+              left: size.width * 0.2,
+              right: size.width * 0.2,
+              top: size.width * 0.03,
+              bottom: size.width * 0.03,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -227,7 +247,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -235,6 +255,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "C",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
@@ -255,7 +276,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -263,6 +284,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "Java",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
@@ -285,7 +307,12 @@ class _SkillsPageState extends State<SkillsPage> {
         Align(
           alignment: Alignment.centerRight,
           child: Padding(
-            padding: EdgeInsets.all(size.width * 0.1),
+            padding: EdgeInsets.only(
+              left: size.width * 0.2,
+              right: size.width * 0.2,
+              top: size.width * 0.03,
+              bottom: size.width * 0.03,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -294,7 +321,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -302,6 +329,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "Python",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
@@ -322,7 +350,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   width: size.width * 0.08,
                   padding: EdgeInsets.all(size.width * 0.01),
                   decoration: BoxDecoration(
-                    color: Colours.primary.withOpacity(0.5),
+                    color: Colors.black12,
                     borderRadius: BorderRadius.circular(size.width * 0.01),
                   ),
                   child: Column(
@@ -330,6 +358,7 @@ class _SkillsPageState extends State<SkillsPage> {
                     children: [
                       Text(
                         "GitHub",
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.012,
                           fontWeight: FontWeight.bold,
