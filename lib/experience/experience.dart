@@ -111,6 +111,561 @@ class _ExperiencePageState extends State<ExperiencePage> {
     }
   }
 
+  Widget _getInternships(Size size) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AnimatedPadding(
+          duration: const Duration(milliseconds: 500),
+          padding: MyApp.startExp
+              ? EdgeInsets.only(
+                  top: size.height * 0.02,
+                  bottom: size.height * 0.01,
+                )
+              : EdgeInsets.only(
+                  left: size.width * 0.03,
+                  right: size.width * 0.03,
+                  bottom: size.height * 0.02,
+                ),
+          child: Text(
+            "Some of my internships are listed below.\n",
+            style: GoogleFonts.caveat(
+              fontSize: size.width * 0.015,
+              color: Colours.text1,
+            ),
+          ),
+        ),
+        Flexible(
+          child: SizedBox(
+            width: size.width / 3,
+            child: AnimatedPadding(
+              duration: const Duration(milliseconds: 700),
+              padding: MyApp.startExp
+                  ? EdgeInsets.zero
+                  : EdgeInsets.only(
+                      left: size.width * 0.05,
+                      right: size.width * 0.05,
+                    ),
+              child: MouseRegion(
+                onEnter: (event) {
+                  MyApp.scrollLock = true;
+                },
+                onExit: (event) {
+                  MyApp.scrollLock = false;
+                },
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: internships.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: size.width * 0.01,
+                          left: size.width * 0.01,
+                          right: size.width * 0.01,
+                        ),
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          onEnter: (event) {
+                            if (mounted) {
+                              setState(() {
+                                hoverIndex1 = index;
+                              });
+                            }
+                          },
+                          onExit: (event) {
+                            if (mounted) {
+                              setState(() {
+                                hoverIndex1 = -1;
+                              });
+                            }
+                          },
+                          child: GestureDetector(
+                            onTap: () {
+                              _launchUrl(internships[index]['link']!);
+                            },
+                            child: AnimatedPadding(
+                              duration: const Duration(milliseconds: 200),
+                              padding: hoverIndex1 != index
+                                  ? EdgeInsets.zero
+                                  : EdgeInsets.only(
+                                      left: size.width * 0.01,
+                                      right: size.width * 0.01,
+                                    ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    alignment: MyApp.isMobile
+                                        ? Alignment.center
+                                        : Alignment.centerLeft,
+                                    opacity: MyApp.isMobile
+                                        ? 0.05
+                                        : hoverIndex1 == index
+                                            ? 0.75
+                                            : 0.5,
+                                    image: AssetImage(
+                                        internships[index]['image']!),
+                                  ),
+                                  color: MyApp.isMobile
+                                      ? Colors.black12
+                                      : Colours.primary.withOpacity(0.25),
+                                  borderRadius:
+                                      BorderRadius.circular(size.width * 0.01),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: MyApp.isMobile
+                                      ? CrossAxisAlignment.center
+                                      : CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        top: size.width * 0.02,
+                                        left: size.width * 0.01,
+                                        right: size.width * 0.01,
+                                      ),
+                                      child: Text(
+                                        internships[index]['title']!,
+                                        textAlign: MyApp.isMobile
+                                            ? TextAlign.center
+                                            : TextAlign.end,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: size.width * 0.01,
+                                          color: Colours.text1,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        top: size.width * 0.001,
+                                        left: size.width * 0.01,
+                                        right: size.width * 0.01,
+                                      ),
+                                      child: Text(
+                                        internships[index]['role']!,
+                                        textAlign: MyApp.isMobile
+                                            ? TextAlign.center
+                                            : TextAlign.end,
+                                        style: TextStyle(
+                                          fontSize: size.width * 0.007,
+                                          color: Colours.text,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        top: size.width * 0.01,
+                                        left: size.width * 0.01,
+                                        right: size.width * 0.01,
+                                        bottom: size.width * 0.02,
+                                      ),
+                                      child: Text(
+                                        internships[index]['sub-title']!,
+                                        textAlign: MyApp.isMobile
+                                            ? TextAlign.center
+                                            : TextAlign.end,
+                                        style: TextStyle(
+                                          fontSize: size.width * 0.008,
+                                          color: Colours.text,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _getWidgets(Size size) {
+    return [
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 700),
+              opacity: MyApp.startExp ? 0 : 1,
+              child: Text(
+                "What have I done?",
+                style: GoogleFonts.kanit(
+                  fontSize: size.width * 0.025,
+                  fontWeight: FontWeight.bold,
+                  color: Colours.text,
+                ),
+              ),
+            ),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 700),
+              opacity: MyApp.startExp ? 0 : 1,
+              child: Lottie.network(
+                "https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json",
+                height: size.width * 0.1,
+              ),
+            ),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 700),
+              opacity: MyApp.startExp ? 0 : 1,
+              child: Text(
+                "Mainly internships, projects and freelance works.",
+                style: GoogleFonts.caveat(
+                  fontSize: size.width * 0.015,
+                  fontWeight: FontWeight.bold,
+                  color: Colours.text1,
+                ),
+              ),
+            ),
+            if (!MyApp.isMobile) _getInternships(size),
+          ],
+        ),
+      ),
+      Expanded(
+        child: Container(
+          width: size.width,
+          decoration: BoxDecoration(
+            color: Colours.primary,
+          ),
+          child: Row(
+            children: [
+              if (MyApp.isMobile) Flexible(child: _getInternships(size)),
+              Flexible(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MyApp.isMobile
+                          ? size.width * 0.02
+                          : size.width * 0.12,
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        width: size.width / 3,
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 700),
+                          padding: MyApp.startExp
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(
+                                  left: size.width * 0.05,
+                                  right: size.width * 0.05,
+                                ),
+                          child: MouseRegion(
+                            onEnter: (event) {
+                              MyApp.scrollLock = true;
+                            },
+                            onExit: (event) {
+                              MyApp.scrollLock = false;
+                            },
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: projects.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                      top: size.width * 0.005,
+                                      bottom: size.width * 0.005,
+                                      left: size.width * 0.02,
+                                      right: size.width * 0.02,
+                                    ),
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      onEnter: (event) {
+                                        if (mounted) {
+                                          setState(() {
+                                            hoverIndex2 = index;
+                                          });
+                                        }
+                                      },
+                                      onExit: (event) {
+                                        if (mounted) {
+                                          setState(() {
+                                            hoverIndex2 = -1;
+                                          });
+                                        }
+                                      },
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          _launchUrl(projects[index]['link']!);
+                                        },
+                                        child: AnimatedPadding(
+                                          duration:
+                                              const Duration(milliseconds: 200),
+                                          padding: hoverIndex2 != index
+                                              ? EdgeInsets.zero
+                                              : EdgeInsets.only(
+                                                  left: size.width * 0.01,
+                                                  right: size.width * 0.01,
+                                                ),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                alignment: MyApp.isMobile
+                                                    ? Alignment.center
+                                                    : Alignment.centerLeft,
+                                                opacity: MyApp.isMobile
+                                                    ? 0.05
+                                                    : hoverIndex2 == index
+                                                        ? 0.75
+                                                        : 0.5,
+                                                image: AssetImage(
+                                                    projects[index]['image']!),
+                                              ),
+                                              color: Colors.black12,
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      size.width * 0.01),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment: MyApp.isMobile
+                                                  ? CrossAxisAlignment.center
+                                                  : CrossAxisAlignment.end,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: size.width * 0.02,
+                                                    left: size.width * 0.01,
+                                                    right: size.width * 0.01,
+                                                  ),
+                                                  child: Text(
+                                                    projects[index]['title']!,
+                                                    textAlign: MyApp.isMobile
+                                                        ? TextAlign.center
+                                                        : TextAlign.end,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colours.text1,
+                                                      fontSize:
+                                                          size.width * 0.01,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: size.width * 0.001,
+                                                    left: size.width * 0.01,
+                                                    right: size.width * 0.01,
+                                                  ),
+                                                  child: Text(
+                                                    projects[index]['role']!,
+                                                    textAlign: MyApp.isMobile
+                                                        ? TextAlign.center
+                                                        : TextAlign.end,
+                                                    style: TextStyle(
+                                                      fontSize:
+                                                          size.width * 0.007,
+                                                      color: Colours.text,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: size.width * 0.01,
+                                                    left: size.width * 0.01,
+                                                    right: size.width * 0.01,
+                                                    bottom: size.width * 0.02,
+                                                  ),
+                                                  child: Text(
+                                                    projects[index]
+                                                        ['sub-title']!,
+                                                    textAlign: MyApp.isMobile
+                                                        ? TextAlign.center
+                                                        : TextAlign.end,
+                                                    style: TextStyle(
+                                                      fontSize:
+                                                          size.width * 0.008,
+                                                      color: Colours.text,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ),
+                        ),
+                      ),
+                    ),
+                    AnimatedPadding(
+                      duration: const Duration(milliseconds: 500),
+                      padding: MyApp.startExp
+                          ? EdgeInsets.zero
+                          : EdgeInsets.only(top: size.width * 0.01),
+                      child: Text(
+                        "These are some of my favourite projects.\n",
+                        style: GoogleFonts.caveat(
+                          fontSize: size.width * 0.015,
+                          color: Colours.text1,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "And some of my freelance works.\n",
+              style: GoogleFonts.caveat(
+                fontSize: size.width * 0.015,
+                color: Colours.text1,
+              ),
+            ),
+            Flexible(
+              child: SizedBox(
+                width: size.width / 3,
+                child: AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startExp
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          left: size.width * 0.05,
+                          right: size.width * 0.05,
+                        ),
+                  child: MouseRegion(
+                    onEnter: (event) {
+                      MyApp.scrollLock = true;
+                    },
+                    onExit: (event) {
+                      MyApp.scrollLock = false;
+                    },
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: freelance.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              bottom: size.width * 0.01,
+                              left: size.width * 0.02,
+                              right: size.width * 0.02,
+                            ),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              onEnter: (event) {
+                                if (mounted) {
+                                  setState(() {
+                                    hoverIndex3 = index;
+                                  });
+                                }
+                              },
+                              onExit: (event) {
+                                if (mounted) {
+                                  setState(() {
+                                    hoverIndex3 = -1;
+                                  });
+                                }
+                              },
+                              child: GestureDetector(
+                                onTap: () {
+                                  _launchUrl(freelance[index]['link']!);
+                                },
+                                child: AnimatedPadding(
+                                  duration: const Duration(milliseconds: 200),
+                                  padding: hoverIndex3 != index
+                                      ? EdgeInsets.zero
+                                      : EdgeInsets.only(
+                                          left: size.width * 0.01,
+                                          right: size.width * 0.01,
+                                        ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        alignment: MyApp.isMobile
+                                            ? Alignment.center
+                                            : Alignment.centerLeft,
+                                        opacity: MyApp.isMobile
+                                            ? 0.05
+                                            : hoverIndex3 == index
+                                                ? 0.75
+                                                : 0.5,
+                                        image: AssetImage(
+                                            freelance[index]['image']!),
+                                      ),
+                                      color: Colours.primary.withOpacity(0.25),
+                                      borderRadius: BorderRadius.circular(
+                                          size.width * 0.01),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: MyApp.isMobile
+                                          ? CrossAxisAlignment.center
+                                          : CrossAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: size.width * 0.02,
+                                            left: size.width * 0.01,
+                                            right: size.width * 0.01,
+                                          ),
+                                          child: Text(
+                                            freelance[index]['title']!,
+                                            textAlign: MyApp.isMobile
+                                                ? TextAlign.center
+                                                : TextAlign.end,
+                                            style: TextStyle(
+                                              color: Colours.text1,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: size.width * 0.01,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: size.width * 0.01,
+                                            left: size.width * 0.01,
+                                            right: size.width * 0.01,
+                                            bottom: size.width * 0.02,
+                                          ),
+                                          child: Text(
+                                            freelance[index]['sub-title']!,
+                                            textAlign: MyApp.isMobile
+                                                ? TextAlign.center
+                                                : TextAlign.end,
+                                            style: TextStyle(
+                                              fontSize: size.width * 0.008,
+                                              color: Colours.text,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ];
+  }
+
   @override
   void initState() {
     super.initState();
@@ -127,563 +682,24 @@ class _ExperiencePageState extends State<ExperiencePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    if (MyApp.isMobile) {
+      size = Size(size.height, size.width);
+    }
+
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 500),
       opacity: MyApp.startExp ? 0 : 1,
       child: Stack(
         children: [
           Center(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AnimatedPadding(
-                        duration: const Duration(milliseconds: 500),
-                        padding: MyApp.startExp
-                            ? EdgeInsets.only(
-                                top: size.width * 0.05,
-                                bottom: size.height * 0.02,
-                              )
-                            : EdgeInsets.only(
-                                left: size.width * 0.03,
-                                right: size.width * 0.03,
-                                top: size.width * 0.05,
-                                bottom: size.height * 0.02,
-                              ),
-                        child: Text(
-                          "What have I done?",
-                          style: GoogleFonts.kanit(
-                            fontSize: size.width * 0.025,
-                            fontWeight: FontWeight.bold,
-                            color: Colours.text,
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Lottie.network(
-                          "https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json",
-                          height: size.width * 0.1,
-                        ),
-                      ),
-                      AnimatedPadding(
-                        duration: const Duration(milliseconds: 500),
-                        padding: MyApp.startExp
-                            ? EdgeInsets.only(
-                                top: size.height * 0.02,
-                                bottom: size.height * 0.01,
-                              )
-                            : EdgeInsets.only(
-                                left: size.width * 0.03,
-                                right: size.width * 0.03,
-                                top: size.height * 0.02,
-                                bottom: size.height * 0.01,
-                              ),
-                        child: Text(
-                          "Mainly internships, projects and freelance works.",
-                          style: GoogleFonts.caveat(
-                            fontSize: size.width * 0.015,
-                            fontWeight: FontWeight.bold,
-                            color: Colours.text1,
-                          ),
-                        ),
-                      ),
-                      AnimatedPadding(
-                        duration: const Duration(milliseconds: 500),
-                        padding: MyApp.startExp
-                            ? EdgeInsets.only(
-                                top: size.height * 0.02,
-                                bottom: size.height * 0.01,
-                              )
-                            : EdgeInsets.only(
-                                left: size.width * 0.03,
-                                right: size.width * 0.03,
-                                bottom: size.height * 0.02,
-                              ),
-                        child: Text(
-                          "Some of my internships are listed below.\n",
-                          style: GoogleFonts.caveat(
-                            fontSize: size.width * 0.015,
-                            color: Colours.text1,
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: SizedBox(
-                          width: size.width / 3,
-                          child: AnimatedPadding(
-                            duration: const Duration(milliseconds: 700),
-                            padding: MyApp.startExp
-                                ? EdgeInsets.zero
-                                : EdgeInsets.only(
-                                    left: size.width * 0.05,
-                                    right: size.width * 0.05,
-                                  ),
-                            child: MouseRegion(
-                              onEnter: (event) {
-                                MyApp.scrollLock = true;
-                              },
-                              onExit: (event) {
-                                MyApp.scrollLock = false;
-                              },
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: internships.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: EdgeInsets.only(
-                                        bottom: size.width * 0.01,
-                                        left: size.width * 0.01,
-                                        right: size.width * 0.01,
-                                      ),
-                                      child: MouseRegion(
-                                        cursor: SystemMouseCursors.click,
-                                        onEnter: (event) {
-                                          if (mounted) {
-                                            setState(() {
-                                              hoverIndex1 = index;
-                                            });
-                                          }
-                                        },
-                                        onExit: (event) {
-                                          if (mounted) {
-                                            setState(() {
-                                              hoverIndex1 = -1;
-                                            });
-                                          }
-                                        },
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            _launchUrl(
-                                                internships[index]['link']!);
-                                          },
-                                          child: AnimatedPadding(
-                                            duration: const Duration(
-                                                milliseconds: 200),
-                                            padding: hoverIndex1 != index
-                                                ? EdgeInsets.zero
-                                                : EdgeInsets.only(
-                                                    left: size.width * 0.01,
-                                                    right: size.width * 0.01,
-                                                  ),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  opacity: hoverIndex1 == index
-                                                      ? 0.75
-                                                      : 0.5,
-                                                  image: AssetImage(
-                                                      internships[index]
-                                                          ['image']!),
-                                                ),
-                                                color: Colours.primary
-                                                    .withOpacity(0.25),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        size.width * 0.01),
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: size.width * 0.02,
-                                                      left: size.width * 0.01,
-                                                      right: size.width * 0.01,
-                                                    ),
-                                                    child: Text(
-                                                      internships[index]
-                                                          ['title']!,
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize:
-                                                            size.width * 0.01,
-                                                        color: Colours.text1,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: size.width * 0.001,
-                                                      left: size.width * 0.01,
-                                                      right: size.width * 0.01,
-                                                    ),
-                                                    child: Text(
-                                                      internships[index]
-                                                          ['role']!,
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            size.width * 0.007,
-                                                        color: Colours.text,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: size.width * 0.01,
-                                                      left: size.width * 0.01,
-                                                      right: size.width * 0.01,
-                                                      bottom: size.width * 0.02,
-                                                    ),
-                                                    child: Text(
-                                                      internships[index]
-                                                          ['sub-title']!,
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            size.width * 0.008,
-                                                        color: Colours.text,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colours.primary,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: size.width * 0.12,
-                        ),
-                        Flexible(
-                          child: SizedBox(
-                            width: size.width / 3,
-                            child: AnimatedPadding(
-                              duration: const Duration(milliseconds: 700),
-                              padding: MyApp.startExp
-                                  ? EdgeInsets.zero
-                                  : EdgeInsets.only(
-                                      left: size.width * 0.05,
-                                      right: size.width * 0.05,
-                                    ),
-                              child: MouseRegion(
-                                onEnter: (event) {
-                                  MyApp.scrollLock = true;
-                                },
-                                onExit: (event) {
-                                  MyApp.scrollLock = false;
-                                },
-                                child: ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: projects.length,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(
-                                          top: size.width * 0.005,
-                                          bottom: size.width * 0.005,
-                                          left: size.width * 0.02,
-                                          right: size.width * 0.02,
-                                        ),
-                                        child: MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          onEnter: (event) {
-                                            if (mounted) {
-                                              setState(() {
-                                                hoverIndex2 = index;
-                                              });
-                                            }
-                                          },
-                                          onExit: (event) {
-                                            if (mounted) {
-                                              setState(() {
-                                                hoverIndex2 = -1;
-                                              });
-                                            }
-                                          },
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              _launchUrl(
-                                                  projects[index]['link']!);
-                                            },
-                                            child: AnimatedPadding(
-                                              duration: const Duration(
-                                                  milliseconds: 200),
-                                              padding: hoverIndex2 != index
-                                                  ? EdgeInsets.zero
-                                                  : EdgeInsets.only(
-                                                      left: size.width * 0.01,
-                                                      right: size.width * 0.01,
-                                                    ),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    opacity:
-                                                        hoverIndex2 == index
-                                                            ? 0.75
-                                                            : 0.5,
-                                                    image: AssetImage(
-                                                        projects[index]
-                                                            ['image']!),
-                                                  ),
-                                                  color: Colors.black12,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          size.width * 0.01),
-                                                ),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: size.width * 0.02,
-                                                        left: size.width * 0.01,
-                                                        right:
-                                                            size.width * 0.01,
-                                                      ),
-                                                      child: Text(
-                                                        projects[index]
-                                                            ['title']!,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colours.text1,
-                                                          fontSize:
-                                                              size.width * 0.01,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: size.width * 0.001,
-                                                        left: size.width * 0.01,
-                                                        right:
-                                                            size.width * 0.01,
-                                                      ),
-                                                      child: Text(
-                                                        projects[index]
-                                                            ['role']!,
-                                                        style: TextStyle(
-                                                          fontSize: size.width *
-                                                              0.007,
-                                                          color: Colours.text,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: size.width * 0.01,
-                                                        left: size.width * 0.01,
-                                                        right:
-                                                            size.width * 0.01,
-                                                        bottom:
-                                                            size.width * 0.02,
-                                                      ),
-                                                      child: Text(
-                                                        projects[index]
-                                                            ['sub-title']!,
-                                                        style: TextStyle(
-                                                          fontSize: size.width *
-                                                              0.008,
-                                                          color: Colours.text,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }),
-                              ),
-                            ),
-                          ),
-                        ),
-                        AnimatedPadding(
-                          duration: const Duration(milliseconds: 500),
-                          padding: MyApp.startExp
-                              ? EdgeInsets.zero
-                              : EdgeInsets.only(top: size.width * 0.01),
-                          child: Text(
-                            "These are some of my favourite projects.\n",
-                            style: GoogleFonts.caveat(
-                              fontSize: size.width * 0.015,
-                              color: Colours.text1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: AnimatedPadding(
-                    duration: const Duration(milliseconds: 700),
-                    padding: MyApp.startExp
-                        ? EdgeInsets.zero
-                        : EdgeInsets.only(
-                            left: size.width * 0.05,
-                            right: size.width * 0.05,
-                          ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Center(
-                          child: Text(
-                            "And some of my freelance works.\n",
-                            style: GoogleFonts.caveat(
-                              fontSize: size.width * 0.015,
-                              color: Colours.text1,
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          child: SizedBox(
-                            width: size.width / 3,
-                            child: MouseRegion(
-                              onEnter: (event) {
-                                MyApp.scrollLock = true;
-                              },
-                              onExit: (event) {
-                                MyApp.scrollLock = false;
-                              },
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount: freelance.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: EdgeInsets.only(
-                                        bottom: size.width * 0.01,
-                                        left: size.width * 0.02,
-                                        right: size.width * 0.02,
-                                      ),
-                                      child: MouseRegion(
-                                        cursor: SystemMouseCursors.click,
-                                        onEnter: (event) {
-                                          if (mounted) {
-                                            setState(() {
-                                              hoverIndex3 = index;
-                                            });
-                                          }
-                                        },
-                                        onExit: (event) {
-                                          if (mounted) {
-                                            setState(() {
-                                              hoverIndex3 = -1;
-                                            });
-                                          }
-                                        },
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            _launchUrl(
-                                                freelance[index]['link']!);
-                                          },
-                                          child: AnimatedPadding(
-                                            duration: const Duration(
-                                                milliseconds: 200),
-                                            padding: hoverIndex3 != index
-                                                ? EdgeInsets.zero
-                                                : EdgeInsets.only(
-                                                    left: size.width * 0.01,
-                                                    right: size.width * 0.01,
-                                                  ),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  opacity: hoverIndex3 == index
-                                                      ? 0.75
-                                                      : 0.5,
-                                                  image: AssetImage(
-                                                      freelance[index]
-                                                          ['image']!),
-                                                ),
-                                                color: Colours.primary
-                                                    .withOpacity(0.25),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        size.width * 0.01),
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: size.width * 0.02,
-                                                      left: size.width * 0.01,
-                                                      right: size.width * 0.01,
-                                                    ),
-                                                    child: Text(
-                                                      freelance[index]
-                                                          ['title']!,
-                                                      style: TextStyle(
-                                                        color: Colours.text1,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize:
-                                                            size.width * 0.01,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: size.width * 0.01,
-                                                      left: size.width * 0.01,
-                                                      right: size.width * 0.01,
-                                                      bottom: size.width * 0.02,
-                                                    ),
-                                                    child: Text(
-                                                      freelance[index]
-                                                          ['sub-title']!,
-                                                      style: TextStyle(
-                                                        fontSize:
-                                                            size.width * 0.008,
-                                                        color: Colours.text,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            child: MyApp.isMobile
+                ? Column(
+                    children: _getWidgets(size),
+                  )
+                : Row(children: _getWidgets(size)),
           ),
           AnimatedOpacity(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 700),
             opacity: MyApp.startExp ? 0 : 1,
             child: Align(
               alignment: Alignment.topCenter,
@@ -723,13 +739,14 @@ class _ExperiencePageState extends State<ExperiencePage> {
             height: size.height,
             width: size.width,
             duration: const Duration(milliseconds: 500),
+            bottom: 0,
             right: MyApp.startExp ? -100 : 0,
             child: Align(
               alignment: Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.only(
                   right: size.width * 0.05,
-                  bottom: size.height * 0.1,
+                  bottom: size.width * 0.03,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,

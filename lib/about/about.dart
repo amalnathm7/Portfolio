@@ -23,31 +23,113 @@ class _AboutPageState extends State<AboutPage> {
     });
   }
 
+  Widget _getPic1(Size size) {
+    return Expanded(
+      child: Container(
+        height: size.height * 0.4,
+        width: size.width * 0.3,
+        decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.25),
+            borderRadius: BorderRadius.circular(size.width / 50)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(size.width / 50),
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 1500),
+            opacity: MyApp.startAbout ? 0 : 1,
+            child: Image.asset(
+              "assets/pic1.png",
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _getPic2(Size size) {
+    return Expanded(
+      child: AnimatedPadding(
+        duration: const Duration(milliseconds: 700),
+        padding: MyApp.startAbout
+            ? EdgeInsets.only(
+                top: size.height * 0.02,
+                bottom: size.height * 0.02,
+              )
+            : EdgeInsets.only(
+                left: size.width * 0.03,
+                right: size.width * 0.03,
+                top: size.height * 0.01,
+                bottom: size.height * 0.05,
+              ),
+        child: Container(
+          height: size.height * 0.4,
+          width: size.width * 0.3,
+          decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.25),
+              borderRadius: BorderRadius.circular(size.width / 50)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(size.width / 50),
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 1500),
+              opacity: MyApp.startAbout ? 0 : 1,
+              child: Image.asset(
+                "assets/pic2.jpeg",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    if (MyApp.isMobile) {
+      size = Size(size.height, size.width);
+    }
 
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 500),
       opacity: MyApp.startAbout ? 0 : 1,
       child: Stack(
         children: [
-          Center(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(),
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colours.primary,
-                    ),
+          MyApp.isMobile
+              ? Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        child: Container(),
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colours.primary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Center(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(),
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colours.primary,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
           AnimatedOpacity(
             duration: const Duration(milliseconds: 700),
             opacity: MyApp.startAbout ? 0 : 1,
@@ -72,7 +154,7 @@ class _AboutPageState extends State<AboutPage> {
                       style: GoogleFonts.kanit(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: MyApp.isMobile ? Colours.text : Colors.white,
                       ),
                     ),
                   ],
@@ -86,7 +168,7 @@ class _AboutPageState extends State<AboutPage> {
                       style: GoogleFonts.kanit(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.bold,
-                        color: Colours.text,
+                        color: MyApp.isMobile ? Colors.white : Colours.text,
                       ),
                     ),
                     Text(
@@ -94,7 +176,7 @@ class _AboutPageState extends State<AboutPage> {
                       style: GoogleFonts.kanit(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: MyApp.isMobile ? Colors.white : Colors.white,
                       ),
                     ),
                   ],
@@ -104,124 +186,100 @@ class _AboutPageState extends State<AboutPage> {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                AnimatedPadding(
-                  duration: const Duration(milliseconds: 700),
-                  padding: MyApp.startAbout
-                      ? EdgeInsets.only(
-                          top: size.height * 0.02,
-                          bottom: size.height * 0.02,
-                        )
-                      : EdgeInsets.only(
-                          left: size.width * 0.03,
-                          right: size.width * 0.03,
-                          top: size.height * 0.02,
-                          bottom: size.height * 0.02,
-                        ),
-                  child: Text(
-                    "So, who am I?",
-                    style: GoogleFonts.kanit(
-                      fontSize: size.width * 0.025,
-                      fontWeight: FontWeight.bold,
-                      color: Colours.text,
-                    ),
-                  ),
-                ),
-                AnimatedPadding(
-                  duration: const Duration(milliseconds: 700),
-                  padding: MyApp.startAbout
-                      ? EdgeInsets.zero
-                      : EdgeInsets.only(
-                          left: size.width * 0.03,
-                        ),
-                  child: Lottie.network(
-                    "https://assets3.lottiefiles.com/private_files/lf30_GjhcdO.json",
-                    height: size.width * 0.075,
-                  ),
-                ),
-                AnimatedPadding(
-                  duration: const Duration(milliseconds: 700),
-                  padding: MyApp.startAbout
-                      ? EdgeInsets.only(
-                          top: size.height * 0.02,
-                          bottom: size.height * 0.02,
-                        )
-                      : EdgeInsets.only(
-                          left: size.width * 0.03,
-                          right: size.width * 0.03,
-                          top: size.height * 0.02,
-                          bottom: size.height * 0.02,
-                        ),
-                  child: Text(
-                    "Well, that's a philosophical question\nif you ask me.\nNah, just kidding.",
-                    style: GoogleFonts.caveat(
-                      fontSize: size.width * 0.015,
-                      fontWeight: FontWeight.bold,
-                      color: Colours.text,
-                    ),
-                  ),
-                ),
-                AnimatedPadding(
-                  duration: const Duration(milliseconds: 700),
-                  padding: MyApp.startAbout
-                      ? EdgeInsets.only(
-                          top: size.height * 0.02,
-                          bottom: size.height * 0.01,
-                        )
-                      : EdgeInsets.only(
-                          left: size.width * 0.03,
-                          right: size.width * 0.03,
-                          top: size.height * 0.02,
-                          bottom: size.height * 0.01,
-                        ),
-                  child: Text(
-                    "I am a B.Tech undergraduate at TKM College\n"
-                    "of Engineering with passion towards learning\n"
-                    "the fundamentals and applications of Computer\n"
-                    "Science and Engineering.\n",
-                    style: GoogleFonts.caveat(
-                      fontSize: size.width * 0.015,
-                      color: Colours.text1,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: AnimatedPadding(
-                    duration: const Duration(milliseconds: 700),
-                    padding: MyApp.startAbout
-                        ? EdgeInsets.only(
-                            top: size.height * 0.02,
-                            bottom: size.height * 0.02,
-                          )
-                        : EdgeInsets.only(
-                            left: size.width * 0.03,
-                            right: size.width * 0.03,
-                            top: size.height * 0.01,
-                            bottom: size.height * 0.05,
-                          ),
-                    child: Container(
-                      height: size.height * 0.4,
-                      width: size.width * 0.3,
-                      decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.25),
-                          borderRadius: BorderRadius.circular(size.width / 50)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(size.width / 50),
-                        child: AnimatedOpacity(
-                          duration: const Duration(milliseconds: 1500),
-                          opacity: MyApp.startAbout ? 0 : 1,
-                          child: Image.asset(
-                            "assets/pic2.jpeg",
-                            fit: BoxFit.cover,
-                          ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AnimatedPadding(
+                      duration: const Duration(milliseconds: 700),
+                      padding: MyApp.startAbout
+                          ? EdgeInsets.only(
+                              top: size.height * 0.02,
+                              bottom: size.height * 0.02,
+                            )
+                          : EdgeInsets.only(
+                              left: size.width * 0.03,
+                              right: size.width * 0.03,
+                              top: size.height * 0.02,
+                              bottom: size.height * 0.02,
+                            ),
+                      child: Text(
+                        "So, who am I?",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.025,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
                         ),
                       ),
                     ),
-                  ),
+                    AnimatedPadding(
+                      duration: const Duration(milliseconds: 700),
+                      padding: MyApp.startAbout
+                          ? EdgeInsets.zero
+                          : EdgeInsets.only(
+                              left: size.width * 0.03,
+                            ),
+                      child: Lottie.network(
+                        "https://assets3.lottiefiles.com/private_files/lf30_GjhcdO.json",
+                        height: size.width * 0.075,
+                      ),
+                    ),
+                    AnimatedPadding(
+                      duration: const Duration(milliseconds: 700),
+                      padding: MyApp.startAbout
+                          ? EdgeInsets.only(
+                              top: size.height * 0.02,
+                              bottom: size.height * 0.02,
+                            )
+                          : EdgeInsets.only(
+                              left: size.width * 0.03,
+                              right: size.width * 0.03,
+                              top: size.height * 0.02,
+                              bottom: size.height * 0.02,
+                            ),
+                      child: Text(
+                        "Well, that's a philosophical question\nif you ask me.\nNah, just kidding.",
+                        style: GoogleFonts.caveat(
+                          fontSize: size.width * 0.015,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
+                        ),
+                      ),
+                    ),
+                    AnimatedPadding(
+                      duration: const Duration(milliseconds: 700),
+                      padding: MyApp.startAbout
+                          ? EdgeInsets.only(
+                              top: size.height * 0.02,
+                              bottom: size.height * 0.01,
+                              right: size.width * 0.02,
+                            )
+                          : EdgeInsets.only(
+                              left: size.width * 0.03,
+                              right: size.width * 0.03,
+                              top: size.height * 0.02,
+                              bottom: size.height * 0.01,
+                            ),
+                      child: Text(
+                        "I am a B.Tech undergraduate at TKM College\n"
+                        "of Engineering with passion towards learning\n"
+                        "the fundamentals and applications of Computer\n"
+                        "Science and Engineering.\n",
+                        style: GoogleFonts.caveat(
+                          fontSize: size.width * 0.015,
+                          color: Colours.text1,
+                        ),
+                      ),
+                    ),
+                    if (!MyApp.isMobile) _getPic2(size),
+                  ],
                 ),
+                if (MyApp.isMobile) _getPic2(size),
               ],
             ),
           ),
@@ -240,70 +298,59 @@ class _AboutPageState extends State<AboutPage> {
                       top: size.height * 0.02,
                       bottom: size.height * 0.02,
                     ),
-              child: Column(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: Container(
-                      height: size.height * 0.4,
-                      width: size.width * 0.3,
-                      decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.25),
-                          borderRadius: BorderRadius.circular(size.width / 50)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(size.width / 50),
-                        child: AnimatedOpacity(
-                          duration: const Duration(milliseconds: 1500),
-                          opacity: MyApp.startAbout ? 0 : 1,
-                          child: Image.asset(
-                            "assets/pic1.png",
-                            fit: BoxFit.fitHeight,
+                  if (MyApp.isMobile) _getPic1(size),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (!MyApp.isMobile) _getPic1(size),
+                      SizedBox(
+                        height: size.height * 0.05,
+                      ),
+                      Text(
+                        "Anything else?",
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.025,
+                          fontWeight: FontWeight.bold,
+                          color: Colours.text,
+                        ),
+                      ),
+                      AnimatedPadding(
+                        duration: const Duration(milliseconds: 700),
+                        padding: MyApp.startAbout
+                            ? EdgeInsets.zero
+                            : EdgeInsets.only(
+                                left: size.width * 0.03,
+                              ),
+                        child: Lottie.network(
+                          "https://assets3.lottiefiles.com/packages/lf20_qqu8eybe.json",
+                          height: size.width * 0.08,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: size.width * 0.02,
+                          top: size.width * 0.02,
+                          bottom: size.width * 0.05,
+                        ),
+                        child: Text(
+                          "I can also refer to myself as a software developer\n"
+                          "with experience in building cross platform\n"
+                          "applications from ground up and deploying them\n"
+                          "in the respective platforms.",
+                          textAlign: TextAlign.end,
+                          style: GoogleFonts.caveat(
+                            fontSize: size.width * 0.015,
+                            color: Colours.text1,
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.05,
-                  ),
-                  Text(
-                    "Anything else?",
-                    style: GoogleFonts.kanit(
-                      fontSize: size.width * 0.025,
-                      fontWeight: FontWeight.bold,
-                      color: Colours.text,
-                    ),
-                  ),
-                  AnimatedPadding(
-                    duration: const Duration(milliseconds: 700),
-                    padding: MyApp.startAbout
-                        ? EdgeInsets.zero
-                        : EdgeInsets.only(
-                            left: size.width * 0.03,
-                          ),
-                    child: Lottie.network(
-                      "https://assets3.lottiefiles.com/packages/lf20_qqu8eybe.json",
-                      height: size.width * 0.08,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.width * 0.02,
-                      bottom: size.width * 0.05,
-                    ),
-                    child: Text(
-                      "I can also refer to myself as a software developer\n"
-                      "with experience in building cross platform\n"
-                      "applications from ground up and deploying them\n"
-                      "in the respective platforms.",
-                      textAlign: TextAlign.end,
-                      style: GoogleFonts.caveat(
-                        fontSize: size.width * 0.015,
-                        color: Colours.text1,
-                      ),
-                    ),
+                    ],
                   ),
                 ],
               ),

@@ -56,6 +56,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    if(MyApp.isMobile) {
+      size = Size(size.height, size.width);
+    }
+
     return AnimatedPadding(
       duration: const Duration(milliseconds: 500),
       padding: _menu

@@ -41,6 +41,10 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    if (MyApp.isMobile) {
+      size = Size(size.height, size.width);
+    }
+
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 700),
       opacity: MyApp.startCont ? 0 : 1,
@@ -229,7 +233,7 @@ class _ContactPageState extends State<ContactPage> {
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.kanit(
                                     fontSize: size.width * 0.008,
-                                    letterSpacing: 3.0,
+                                    letterSpacing: MyApp.isMobile ? 1.0 : 3.0,
                                     color: Colours.text,
                                   ),
                                 ),
