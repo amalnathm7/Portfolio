@@ -25,6 +25,272 @@ class _ContactPageState extends State<ContactPage> {
     return true;
   }
 
+  List<Widget> _getWidgets(Size size) {
+    return [
+      Expanded(
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 700),
+          opacity: MyApp.startCont ? 0 : 1,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Lottie.network(
+                  "https://assets8.lottiefiles.com/private_files/lf30_yPKMfX.json",
+                ),
+              ),
+              Flexible(
+                child: AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startCont
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          bottom: size.width * 0.01,
+                        ),
+                  child: Text(
+                    "I would love to discuss more opportunities. So shoot away!",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.caveat(
+                      fontSize: size.width * 0.014,
+                      color: Colours.text1,
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                child: AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startCont
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          top: size.width * 0.01,
+                          bottom: size.width * 0.01,
+                        ),
+                  child: SizedBox(
+                    width: size.width * 0.2,
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: size.width * 0.008,
+                        color: Colours.text,
+                      ),
+                      controller: _nameController,
+                      cursorColor: Colours.primary,
+                      decoration: InputDecoration(
+                        hintText: "Name",
+                        hintStyle: TextStyle(
+                          fontSize: size.width * 0.008,
+                          color: Colours.text.withOpacity(0.75),
+                        ),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                child: AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startCont
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          top: size.width * 0.01,
+                          bottom: size.width * 0.01,
+                        ),
+                  child: SizedBox(
+                    width: size.width * 0.2,
+                    child: TextField(
+                      controller: _emailController,
+                      cursorColor: Colours.primary,
+                      style: TextStyle(
+                        fontSize: size.width * 0.008,
+                        color: Colours.text,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Email",
+                        hintStyle: TextStyle(
+                          fontSize: size.width * 0.008,
+                          color: Colours.text.withOpacity(0.75),
+                        ),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                child: AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startCont
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          top: size.width * 0.01,
+                          bottom: size.width * 0.01,
+                        ),
+                  child: SizedBox(
+                    width: size.width * 0.2,
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: size.width * 0.008,
+                        color: Colours.text,
+                      ),
+                      controller: _domainController,
+                      cursorColor: Colours.primary,
+                      decoration: InputDecoration(
+                        hintText: "Project Domain",
+                        hintStyle: TextStyle(
+                          fontSize: size.width * 0.008,
+                          color: Colours.text.withOpacity(0.75),
+                        ),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                child: AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startCont
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          top: size.width * 0.01,
+                          bottom: size.width * 0.01,
+                        ),
+                  child: SizedBox(
+                    width: size.width * 0.2,
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: size.width * 0.008,
+                        color: Colours.text,
+                      ),
+                      controller: _descController,
+                      minLines: 5,
+                      maxLines: 10,
+                      cursorColor: Colours.primary,
+                      decoration: InputDecoration(
+                        hintText: "Project Description",
+                        hintStyle: TextStyle(
+                          fontSize: size.width * 0.008,
+                          color: Colours.text.withOpacity(0.75),
+                        ),
+                        border: const OutlineInputBorder(),
+                        focusedBorder: const OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                child: AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startCont
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          top: size.width * 0.01,
+                          bottom: size.width * 0.01,
+                        ),
+                  child: MaterialButton(
+                    color: Colours.primary,
+                    onPressed: () async {
+                      await _send();
+                    },
+                    child: SizedBox(
+                      height: size.width * 0.018,
+                      width: size.width * 0.07,
+                      child: Center(
+                        child: Text(
+                          "JUST SEND",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.008,
+                            letterSpacing: MyApp.isMobile ? 1.0 : 3.0,
+                            color: Colours.text,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+      Expanded(
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 1000),
+          opacity: MyApp.startCont ? 0 : 1,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.network(
+                      "https://assets10.lottiefiles.com/packages/lf20_wbhpdrhp.json",
+                      height: size.width * 0.15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "CONT",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.primary,
+                          ),
+                        ),
+                        Text(
+                          "ACT",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.text,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "M",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.primary,
+                          ),
+                        ),
+                        Text(
+                          "E.",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.text,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ];
+  }
+
   @override
   void initState() {
     super.initState();
@@ -49,268 +315,21 @@ class _ContactPageState extends State<ContactPage> {
       duration: const Duration(milliseconds: 700),
       opacity: MyApp.startCont ? 0 : 1,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 700),
-                  opacity: MyApp.startCont ? 0 : 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Lottie.network(
-                          "https://assets8.lottiefiles.com/private_files/lf30_yPKMfX.json",
-                        ),
-                      ),
-                      Flexible(
-                        child: AnimatedPadding(
-                          duration: const Duration(milliseconds: 700),
-                          padding: MyApp.startCont
-                              ? EdgeInsets.zero
-                              : EdgeInsets.only(
-                                  bottom: size.width * 0.01,
-                                ),
-                          child: Text(
-                            "I would love to discuss more opportunities. So shoot away!",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.caveat(
-                              fontSize: size.width * 0.014,
-                              color: Colours.text1,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: AnimatedPadding(
-                          duration: const Duration(milliseconds: 700),
-                          padding: MyApp.startCont
-                              ? EdgeInsets.zero
-                              : EdgeInsets.only(
-                                  top: size.width * 0.01,
-                                  bottom: size.width * 0.01,
-                                ),
-                          child: SizedBox(
-                            width: size.width * 0.2,
-                            child: TextField(
-                              style: TextStyle(
-                                fontSize: size.width * 0.008,
-                                color: Colours.text,
-                              ),
-                              controller: _nameController,
-                              cursorColor: Colours.primary,
-                              decoration: InputDecoration(
-                                hintText: "Name",
-                                hintStyle: TextStyle(
-                                  fontSize: size.width * 0.008,
-                                  color: Colours.text.withOpacity(0.75),
-                                ),
-                                border: const OutlineInputBorder(),
-                                focusedBorder: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: AnimatedPadding(
-                          duration: const Duration(milliseconds: 700),
-                          padding: MyApp.startCont
-                              ? EdgeInsets.zero
-                              : EdgeInsets.only(
-                                  top: size.width * 0.01,
-                                  bottom: size.width * 0.01,
-                                ),
-                          child: SizedBox(
-                            width: size.width * 0.2,
-                            child: TextField(
-                              controller: _emailController,
-                              cursorColor: Colours.primary,
-                              style: TextStyle(
-                                fontSize: size.width * 0.008,
-                                color: Colours.text,
-                              ),
-                              decoration: InputDecoration(
-                                hintText: "Email",
-                                hintStyle: TextStyle(
-                                  fontSize: size.width * 0.008,
-                                  color: Colours.text.withOpacity(0.75),
-                                ),
-                                border: const OutlineInputBorder(),
-                                focusedBorder: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: AnimatedPadding(
-                          duration: const Duration(milliseconds: 700),
-                          padding: MyApp.startCont
-                              ? EdgeInsets.zero
-                              : EdgeInsets.only(
-                                  top: size.width * 0.01,
-                                  bottom: size.width * 0.01,
-                                ),
-                          child: SizedBox(
-                            width: size.width * 0.2,
-                            child: TextField(
-                              style: TextStyle(
-                                fontSize: size.width * 0.008,
-                                color: Colours.text,
-                              ),
-                              controller: _domainController,
-                              cursorColor: Colours.primary,
-                              decoration: InputDecoration(
-                                hintText: "Project Domain",
-                                hintStyle: TextStyle(
-                                  fontSize: size.width * 0.008,
-                                  color: Colours.text.withOpacity(0.75),
-                                ),
-                                border: const OutlineInputBorder(),
-                                focusedBorder: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: AnimatedPadding(
-                          duration: const Duration(milliseconds: 700),
-                          padding: MyApp.startCont
-                              ? EdgeInsets.zero
-                              : EdgeInsets.only(
-                                  top: size.width * 0.01,
-                                  bottom: size.width * 0.01,
-                                ),
-                          child: SizedBox(
-                            width: size.width * 0.2,
-                            child: TextField(
-                              style: TextStyle(
-                                fontSize: size.width * 0.008,
-                                color: Colours.text,
-                              ),
-                              controller: _descController,
-                              minLines: 5,
-                              maxLines: 10,
-                              cursorColor: Colours.primary,
-                              decoration: InputDecoration(
-                                hintText: "Project Description",
-                                hintStyle: TextStyle(
-                                  fontSize: size.width * 0.008,
-                                  color: Colours.text.withOpacity(0.75),
-                                ),
-                                border: const OutlineInputBorder(),
-                                focusedBorder: const OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: AnimatedPadding(
-                          duration: const Duration(milliseconds: 700),
-                          padding: MyApp.startCont
-                              ? EdgeInsets.zero
-                              : EdgeInsets.only(
-                                  top: size.width * 0.01,
-                                  bottom: size.width * 0.01,
-                                ),
-                          child: MaterialButton(
-                            color: Colours.primary,
-                            onPressed: () async {
-                              await _send();
-                            },
-                            child: SizedBox(
-                              height: size.width * 0.018,
-                              width: size.width * 0.07,
-                              child: Center(
-                                child: Text(
-                                  "JUST SEND",
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.kanit(
-                                    fontSize: size.width * 0.008,
-                                    letterSpacing: MyApp.isMobile ? 1.0 : 3.0,
-                                    color: Colours.text,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+            child: MyApp.isMobile
+                ? Column(
+                    verticalDirection: VerticalDirection.up,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: _getWidgets(size),
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: _getWidgets(size),
                   ),
-                ),
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 1000),
-                  opacity: MyApp.startCont ? 0 : 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Lottie.network(
-                              "https://assets10.lottiefiles.com/packages/lf20_wbhpdrhp.json",
-                              height: size.width * 0.15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "CONT",
-                                  style: GoogleFonts.kanit(
-                                    fontSize: size.width * 0.05,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colours.primary,
-                                  ),
-                                ),
-                                Text(
-                                  "ACT",
-                                  style: GoogleFonts.kanit(
-                                    fontSize: size.width * 0.05,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colours.text,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "M",
-                                  style: GoogleFonts.kanit(
-                                    fontSize: size.width * 0.05,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colours.primary,
-                                  ),
-                                ),
-                                Text(
-                                  "E.",
-                                  style: GoogleFonts.kanit(
-                                    fontSize: size.width * 0.05,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colours.text,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
           ),
           Container(
             height: size.width * 0.05,

@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    if(MyApp.isMobile) {
+    if (MyApp.isMobile) {
       size = Size(size.height, size.width);
     }
 
@@ -352,79 +352,80 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ),
             ),
-            AnimatedPositioned(
-              height: size.height,
-              duration: const Duration(milliseconds: 500),
-              left: MyApp.startHome ? -100 : 8.0,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: size.width * 0.05,
-                  ),
-                  Flexible(
-                    child: RotatedBox(
-                      quarterTurns: 3,
-                      child: IconButton(
-                        splashRadius: size.width * 0.01,
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        onPressed: () {
-                          setState(() {
-                            _menu = !_menu;
-                          });
-
-                          _menu
-                              ? _animationController!.forward()
-                              : _animationController!.reverse();
-                        },
-                        icon: AnimatedIcon(
-                          size: size.width * 0.02,
-                          icon: AnimatedIcons.menu_close,
-                          progress: _animationController!,
-                          color: Colors.grey[800],
-                        ),
-                      ),
+            if (!MyApp.isMobile)
+              AnimatedPositioned(
+                height: size.height,
+                duration: const Duration(milliseconds: 500),
+                left: MyApp.startHome ? -100 : 8.0,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: size.width * 0.05,
                     ),
-                  ),
-                  Flexible(
-                    child: AnimatedOpacity(
-                      duration: const Duration(milliseconds: 500),
-                      opacity: _menu ? 0 : 1,
-                      child: Transform.scale(
-                        scaleX: -1,
-                        child: RotatedBox(
-                          quarterTurns: 0,
-                          child: Lottie.network(
-                            "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
-                            height: size.width * 0.075,
+                    Flexible(
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: IconButton(
+                          splashRadius: size.width * 0.01,
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          onPressed: () {
+                            setState(() {
+                              _menu = !_menu;
+                            });
+
+                            _menu
+                                ? _animationController!.forward()
+                                : _animationController!.reverse();
+                          },
+                          icon: AnimatedIcon(
+                            size: size.width * 0.02,
+                            icon: AnimatedIcons.menu_close,
+                            progress: _animationController!,
+                            color: Colors.grey[800],
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: size.width * 0.02),
+                    Flexible(
                       child: AnimatedOpacity(
                         duration: const Duration(milliseconds: 500),
                         opacity: _menu ? 0 : 1,
-                        child: Text(
-                          "You can jump into\nmy life here",
-                          style: GoogleFonts.caveat(
-                            fontSize: size.width * 0.015,
-                            color: Colours.text1,
+                        child: Transform.scale(
+                          scaleX: -1,
+                          child: RotatedBox(
+                            quarterTurns: 0,
+                            child: Lottie.network(
+                              "https://assets7.lottiefiles.com/private_files/lf30_xzwwylsk.json",
+                              height: size.width * 0.075,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Flexible(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: size.width * 0.02),
+                        child: AnimatedOpacity(
+                          duration: const Duration(milliseconds: 500),
+                          opacity: _menu ? 0 : 1,
+                          child: Text(
+                            "You can jump into\nmy life here",
+                            style: GoogleFonts.caveat(
+                              fontSize: size.width * 0.015,
+                              color: Colours.text1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
             AnimatedOpacity(
               duration: const Duration(milliseconds: 700),
               opacity: MyApp.startHome ? 0 : 1,
@@ -467,7 +468,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 style: GoogleFonts.kanit(
                                   fontSize: size.width * 0.1,
                                   fontWeight: FontWeight.bold,
-                                  color: Colours.text,
+                                  color: Colours.text1,
                                 ),
                               ),
                             ),
@@ -487,6 +488,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Flexible(
                         child: Text(
                           "I'm Amal Nath, a student, programmer and software developer",
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.caveat(
                             fontSize: size.width * 0.02,
                             color: Colours.text1,

@@ -199,7 +199,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                         ? Alignment.center
                                         : Alignment.centerLeft,
                                     opacity: MyApp.isMobile
-                                        ? 0.05
+                                        ? 0.1
                                         : hoverIndex1 == index
                                             ? 0.75
                                             : 0.5,
@@ -289,51 +289,55 @@ class _ExperiencePageState extends State<ExperiencePage> {
   List<Widget> _getWidgets(Size size) {
     return [
       Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 700),
-              opacity: MyApp.startExp ? 0 : 1,
-              child: Text(
-                "What have I done?",
-                style: GoogleFonts.kanit(
-                  fontSize: size.width * 0.025,
-                  fontWeight: FontWeight.bold,
-                  color: Colours.text,
+        child: Container(
+          width: size.width,
+          color: MyApp.isMobile ? Colours.primary : Colors.transparent,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 700),
+                opacity: MyApp.startExp ? 0 : 1,
+                child: Text(
+                  "What have I done?",
+                  style: GoogleFonts.kanit(
+                    fontSize: size.width * 0.025,
+                    fontWeight: FontWeight.bold,
+                    color: Colours.text,
+                  ),
                 ),
               ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 700),
-              opacity: MyApp.startExp ? 0 : 1,
-              child: Lottie.network(
-                "https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json",
-                height: size.width * 0.1,
-              ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 700),
-              opacity: MyApp.startExp ? 0 : 1,
-              child: Text(
-                "Mainly internships, projects and freelance works.",
-                style: GoogleFonts.caveat(
-                  fontSize: size.width * 0.015,
-                  fontWeight: FontWeight.bold,
-                  color: Colours.text1,
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 700),
+                opacity: MyApp.startExp ? 0 : 1,
+                child: Lottie.network(
+                  "https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json",
+                  height: size.width * 0.1,
                 ),
               ),
-            ),
-            if (!MyApp.isMobile) _getInternships(size),
-          ],
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 700),
+                opacity: MyApp.startExp ? 0 : 1,
+                child: Text(
+                  "Mainly internships, projects and freelance works.",
+                  style: GoogleFonts.caveat(
+                    fontSize: size.width * 0.015,
+                    fontWeight: FontWeight.bold,
+                    color: Colours.text1,
+                  ),
+                ),
+              ),
+              if (!MyApp.isMobile) _getInternships(size),
+            ],
+          ),
         ),
       ),
       Expanded(
         child: Container(
           width: size.width,
           decoration: BoxDecoration(
-            color: Colours.primary,
+            color: MyApp.isMobile ? Colors.transparent : Colours.primary,
           ),
           child: Row(
             children: [
@@ -413,7 +417,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                                     ? Alignment.center
                                                     : Alignment.centerLeft,
                                                 opacity: MyApp.isMobile
-                                                    ? 0.05
+                                                    ? 0.1
                                                     : hoverIndex2 == index
                                                         ? 0.75
                                                         : 0.5,
@@ -521,146 +525,151 @@ class _ExperiencePageState extends State<ExperiencePage> {
         ),
       ),
       Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "And some of my freelance works.\n",
-              style: GoogleFonts.caveat(
-                fontSize: size.width * 0.015,
-                color: Colours.text1,
+        child: Container(
+          color: MyApp.isMobile ? Colours.primary : Colors.transparent,
+          width: size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "And some of my freelance works.\n",
+                style: GoogleFonts.caveat(
+                  fontSize: size.width * 0.015,
+                  color: Colours.text1,
+                ),
               ),
-            ),
-            Flexible(
-              child: SizedBox(
-                width: size.width / 3,
-                child: AnimatedPadding(
-                  duration: const Duration(milliseconds: 700),
-                  padding: MyApp.startExp
-                      ? EdgeInsets.zero
-                      : EdgeInsets.only(
-                          left: size.width * 0.05,
-                          right: size.width * 0.05,
-                        ),
-                  child: MouseRegion(
-                    onEnter: (event) {
-                      MyApp.scrollLock = true;
-                    },
-                    onExit: (event) {
-                      MyApp.scrollLock = false;
-                    },
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: freelance.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              bottom: size.width * 0.01,
-                              left: size.width * 0.02,
-                              right: size.width * 0.02,
-                            ),
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              onEnter: (event) {
-                                if (mounted) {
-                                  setState(() {
-                                    hoverIndex3 = index;
-                                  });
-                                }
-                              },
-                              onExit: (event) {
-                                if (mounted) {
-                                  setState(() {
-                                    hoverIndex3 = -1;
-                                  });
-                                }
-                              },
-                              child: GestureDetector(
-                                onTap: () {
-                                  _launchUrl(freelance[index]['link']!);
+              Flexible(
+                child: SizedBox(
+                  width: size.width / 3,
+                  child: AnimatedPadding(
+                    duration: const Duration(milliseconds: 700),
+                    padding: MyApp.startExp
+                        ? EdgeInsets.zero
+                        : EdgeInsets.only(
+                            left: size.width * 0.05,
+                            right: size.width * 0.05,
+                          ),
+                    child: MouseRegion(
+                      onEnter: (event) {
+                        MyApp.scrollLock = true;
+                      },
+                      onExit: (event) {
+                        MyApp.scrollLock = false;
+                      },
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: freelance.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                bottom: size.width * 0.01,
+                                left: size.width * 0.02,
+                                right: size.width * 0.02,
+                              ),
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                onEnter: (event) {
+                                  if (mounted) {
+                                    setState(() {
+                                      hoverIndex3 = index;
+                                    });
+                                  }
                                 },
-                                child: AnimatedPadding(
-                                  duration: const Duration(milliseconds: 200),
-                                  padding: hoverIndex3 != index
-                                      ? EdgeInsets.zero
-                                      : EdgeInsets.only(
-                                          left: size.width * 0.01,
-                                          right: size.width * 0.01,
+                                onExit: (event) {
+                                  if (mounted) {
+                                    setState(() {
+                                      hoverIndex3 = -1;
+                                    });
+                                  }
+                                },
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _launchUrl(freelance[index]['link']!);
+                                  },
+                                  child: AnimatedPadding(
+                                    duration: const Duration(milliseconds: 200),
+                                    padding: hoverIndex3 != index
+                                        ? EdgeInsets.zero
+                                        : EdgeInsets.only(
+                                            left: size.width * 0.01,
+                                            right: size.width * 0.01,
+                                          ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          alignment: MyApp.isMobile
+                                              ? Alignment.center
+                                              : Alignment.centerLeft,
+                                          opacity: MyApp.isMobile
+                                              ? 0.1
+                                              : hoverIndex3 == index
+                                                  ? 0.75
+                                                  : 0.5,
+                                          image: AssetImage(
+                                              freelance[index]['image']!),
                                         ),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        alignment: MyApp.isMobile
-                                            ? Alignment.center
-                                            : Alignment.centerLeft,
-                                        opacity: MyApp.isMobile
-                                            ? 0.05
-                                            : hoverIndex3 == index
-                                                ? 0.75
-                                                : 0.5,
-                                        image: AssetImage(
-                                            freelance[index]['image']!),
+                                        color:
+                                            Colours.primary.withOpacity(0.25),
+                                        borderRadius: BorderRadius.circular(
+                                            size.width * 0.01),
                                       ),
-                                      color: Colours.primary.withOpacity(0.25),
-                                      borderRadius: BorderRadius.circular(
-                                          size.width * 0.01),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment: MyApp.isMobile
-                                          ? CrossAxisAlignment.center
-                                          : CrossAxisAlignment.end,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                            top: size.width * 0.02,
-                                            left: size.width * 0.01,
-                                            right: size.width * 0.01,
-                                          ),
-                                          child: Text(
-                                            freelance[index]['title']!,
-                                            textAlign: MyApp.isMobile
-                                                ? TextAlign.center
-                                                : TextAlign.end,
-                                            style: TextStyle(
-                                              color: Colours.text1,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: size.width * 0.01,
+                                      child: Column(
+                                        crossAxisAlignment: MyApp.isMobile
+                                            ? CrossAxisAlignment.center
+                                            : CrossAxisAlignment.end,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.width * 0.02,
+                                              left: size.width * 0.01,
+                                              right: size.width * 0.01,
+                                            ),
+                                            child: Text(
+                                              freelance[index]['title']!,
+                                              textAlign: MyApp.isMobile
+                                                  ? TextAlign.center
+                                                  : TextAlign.end,
+                                              style: TextStyle(
+                                                color: Colours.text1,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: size.width * 0.01,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                            top: size.width * 0.01,
-                                            left: size.width * 0.01,
-                                            right: size.width * 0.01,
-                                            bottom: size.width * 0.02,
-                                          ),
-                                          child: Text(
-                                            freelance[index]['sub-title']!,
-                                            textAlign: MyApp.isMobile
-                                                ? TextAlign.center
-                                                : TextAlign.end,
-                                            style: TextStyle(
-                                              fontSize: size.width * 0.008,
-                                              color: Colours.text,
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.width * 0.01,
+                                              left: size.width * 0.01,
+                                              right: size.width * 0.01,
+                                              bottom: size.width * 0.02,
+                                            ),
+                                            child: Text(
+                                              freelance[index]['sub-title']!,
+                                              textAlign: MyApp.isMobile
+                                                  ? TextAlign.center
+                                                  : TextAlign.end,
+                                              style: TextStyle(
+                                                fontSize: size.width * 0.008,
+                                                color: Colours.text,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        }),
+                            );
+                          }),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ];

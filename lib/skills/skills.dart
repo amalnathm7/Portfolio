@@ -27,7 +27,7 @@ class _SkillsPageState extends State<SkillsPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    if(MyApp.isMobile) {
+    if (MyApp.isMobile) {
       size = Size(size.height, size.width);
     }
 
@@ -38,14 +38,21 @@ class _SkillsPageState extends State<SkillsPage> {
         children: [
           AnimatedPadding(
             duration: const Duration(milliseconds: 700),
-            padding: MyApp.startSkill
-                ? EdgeInsets.zero
-                : EdgeInsets.only(
-                    left: size.width * 0.15,
-                    right: size.width * 0.15,
-                    top: size.height * 0.01,
-                    bottom: size.height * 0.01,
-                  ),
+            padding: MyApp.isMobile
+                ? EdgeInsets.only(
+                    left: size.width * 0.1,
+                    right: size.width * 0.1,
+                    top: size.width * 0.4,
+                    bottom: size.width * 0.4,
+                  )
+                : MyApp.startSkill
+                    ? EdgeInsets.zero
+                    : EdgeInsets.only(
+                        left: size.width * 0.15,
+                        right: size.width * 0.15,
+                        top: size.height * 0.01,
+                        bottom: size.height * 0.01,
+                      ),
             child: Container(
               color: Colours.primary,
             ),
@@ -112,14 +119,21 @@ class _SkillsPageState extends State<SkillsPage> {
             alignment: Alignment.topCenter,
             child: AnimatedPadding(
               duration: const Duration(milliseconds: 700),
-              padding: MyApp.startSkill
-                  ? EdgeInsets.zero
-                  : EdgeInsets.only(
-                      left: size.width * 0.2,
-                      right: size.width * 0.2,
+              padding: MyApp.isMobile
+                  ? EdgeInsets.only(
+                      left: size.width * 0.02,
+                      right: size.width * 0.02,
                       top: size.width * 0.03,
                       bottom: size.width * 0.03,
-                    ),
+                    )
+                  : MyApp.startSkill
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          left: size.width * 0.2,
+                          right: size.width * 0.2,
+                          top: size.width * 0.03,
+                          bottom: size.width * 0.03,
+                        ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -197,14 +211,21 @@ class _SkillsPageState extends State<SkillsPage> {
             alignment: Alignment.centerLeft,
             child: AnimatedPadding(
               duration: const Duration(milliseconds: 700),
-              padding: MyApp.startSkill
-                  ? EdgeInsets.zero
-                  : EdgeInsets.only(
-                      left: size.width * 0.2,
-                      right: size.width * 0.2,
+              padding: MyApp.isMobile
+                  ? EdgeInsets.only(
+                      left: size.width * 0.02,
+                      right: size.width * 0.02,
                       top: size.width * 0.03,
                       bottom: size.width * 0.03,
-                    ),
+                    )
+                  : MyApp.startSkill
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          left: size.width * 0.2,
+                          right: size.width * 0.2,
+                          top: size.width * 0.03,
+                          bottom: size.width * 0.03,
+                        ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -282,14 +303,21 @@ class _SkillsPageState extends State<SkillsPage> {
             alignment: Alignment.bottomCenter,
             child: AnimatedPadding(
               duration: const Duration(milliseconds: 700),
-              padding: MyApp.startSkill
-                  ? EdgeInsets.zero
-                  : EdgeInsets.only(
-                      left: size.width * 0.2,
-                      right: size.width * 0.2,
+              padding: MyApp.isMobile
+                  ? EdgeInsets.only(
+                      left: size.width * 0.02,
+                      right: size.width * 0.02,
                       top: size.width * 0.03,
                       bottom: size.width * 0.03,
-                    ),
+                    )
+                  : MyApp.startSkill
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          left: size.width * 0.2,
+                          right: size.width * 0.2,
+                          top: size.width * 0.03,
+                          bottom: size.width * 0.03,
+                        ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -367,14 +395,21 @@ class _SkillsPageState extends State<SkillsPage> {
             alignment: Alignment.centerRight,
             child: AnimatedPadding(
               duration: const Duration(milliseconds: 700),
-              padding: MyApp.startSkill
-                  ? EdgeInsets.zero
-                  : EdgeInsets.only(
-                      left: size.width * 0.2,
-                      right: size.width * 0.2,
+              padding: MyApp.isMobile
+                  ? EdgeInsets.only(
+                      left: size.width * 0.02,
+                      right: size.width * 0.02,
                       top: size.width * 0.03,
                       bottom: size.width * 0.03,
-                    ),
+                    )
+                  : MyApp.startSkill
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          left: size.width * 0.2,
+                          right: size.width * 0.2,
+                          top: size.width * 0.03,
+                          bottom: size.width * 0.03,
+                        ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

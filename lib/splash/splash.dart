@@ -14,12 +14,23 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    if (MyApp.isMobile) {
+      size = Size(size.height, size.width);
+    }
+
     return Container(
-      height: size.height,
-      width: size.width,
+      height: double.infinity,
+      width: double.infinity,
       color: Colours.primary,
-      child: Lottie.network(
-        "https://assets5.lottiefiles.com/packages/lf20_ocmino.json",
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Lottie.network(
+            "https://assets5.lottiefiles.com/packages/lf20_ocmino.json",
+            height: size.width * 0.1,
+            width: size.width * 0.1,
+          ),
+        ],
       ),
     );
   }
