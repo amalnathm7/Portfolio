@@ -449,7 +449,7 @@ class _ViewState extends State<View> {
               width: size.height / 3,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: _getActions(size, context),
               ),
             )

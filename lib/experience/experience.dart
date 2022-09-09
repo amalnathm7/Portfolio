@@ -610,8 +610,9 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                           image: AssetImage(
                                               freelance[index]['image']!),
                                         ),
-                                        color:
-                                            Colours.primary.withOpacity(0.25),
+                                        color: MyApp.isMobile
+                                            ? Colors.black12
+                                            : Colours.primary.withOpacity(0.25),
                                         borderRadius: BorderRadius.circular(
                                             size.width * 0.01),
                                       ),

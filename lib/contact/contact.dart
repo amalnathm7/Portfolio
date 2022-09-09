@@ -193,23 +193,22 @@ class _ContactPageState extends State<ContactPage> {
                           top: size.width * 0.01,
                           bottom: size.width * 0.01,
                         ),
-                  child: MaterialButton(
-                    color: Colours.primary,
-                    onPressed: () async {
-                      await _send();
-                    },
-                    child: SizedBox(
-                      height: size.width * 0.018,
-                      width: size.width * 0.07,
-                      child: Center(
-                        child: Text(
-                          "JUST SEND",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.kanit(
-                            fontSize: size.width * 0.008,
-                            letterSpacing: MyApp.isMobile ? 1.0 : 3.0,
-                            color: Colours.text,
-                          ),
+                  child: SizedBox(
+                    height: size.width * 0.018,
+                    width: size.width * 0.07,
+                    child: MaterialButton(
+                      padding: EdgeInsets.zero,
+                      color: Colours.primary,
+                      onPressed: () async {
+                        await _send();
+                      },
+                      child: Text(
+                        "JUST SEND",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.kanit(
+                          fontSize: size.width * 0.008,
+                          letterSpacing: MyApp.isMobile ? 1.0 : 3.0,
+                          color: Colours.text,
                         ),
                       ),
                     ),
@@ -335,66 +334,69 @@ class _ContactPageState extends State<ContactPage> {
             height: size.width * 0.05,
             width: size.width,
             color: Colours.primary,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Stack(
               children: [
-                Flexible(
-                  child: Row(
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: size.width * 0.02,
+                    ),
+                    child: TextButton(
+                      onPressed: () async {
+                        if (!await launchUrl(Uri.parse(
+                            "mailto:amalnathm7@gmail.com?subject=Hey Amal, I have something exciting for you!"))) {
+                          throw 'Could not launch';
+                        }
+                      },
+                      child: Text(
+                        "amalnathm7@gmail.com",
+                        style: TextStyle(
+                          fontSize: size.width * 0.008,
+                          color: Colours.text,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TextButton(
-                        onPressed: () async {
-                          if (!await launchUrl(Uri.parse(
-                              "mailto:amalnathm7@gmail.com?subject=Hey Amal, I have something exciting for you!"))) {
-                            throw 'Could not launch';
-                          }
-                        },
+                      Text(
+                        "©️2022 Amal Nath M",
+                        style: TextStyle(
+                          fontSize: size.width * 0.007,
+                          color: Colours.text,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "amalnathm7@gmail.com",
+                          "Made with Flutter",
                           style: TextStyle(
-                            fontSize: size.width * 0.008,
+                            fontSize: size.width * 0.005,
                             color: Colours.text,
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "©️2022 Amal Nath M",
-                            style: TextStyle(
-                              fontSize: size.width * 0.007,
-                              color: Colours.text,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Made with Flutter",
-                              style: TextStyle(
-                                fontSize: size.width * 0.005,
-                                color: Colours.text,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Text(
-                        "(+91) 790 758 7380",
-                        style: TextStyle(
-                          fontSize: size.width * 0.008,
-                          color: Colors.grey[800],
-                        ),
-                      ),
                     ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      right: size.width * 0.02,
+                    ),
+                    child: Text(
+                      "(+91) 790 758 7380",
+                      style: TextStyle(
+                        fontSize: size.width * 0.008,
+                        color: Colors.grey[800],
+                      ),
+                    ),
                   ),
                 ),
               ],
