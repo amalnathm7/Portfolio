@@ -75,7 +75,7 @@ class View extends StatefulWidget {
 class _ViewState extends State<View> {
   int _menuIndex = 0;
 
-  List<Widget> _getActions(Size size) {
+  List<Widget> _getActions(Size size, BuildContext context) {
     return [
       Padding(
         padding: EdgeInsets.only(
@@ -107,6 +107,7 @@ class _ViewState extends State<View> {
                   MyApp.index = 0;
                 });
               }
+              Navigator.pop(context);
             },
             child: Stack(
               children: [
@@ -166,6 +167,7 @@ class _ViewState extends State<View> {
                   MyApp.index = 1;
                 });
               }
+              Navigator.pop(context);
             },
             child: Stack(
               children: [
@@ -225,6 +227,7 @@ class _ViewState extends State<View> {
                   MyApp.index = 2;
                 });
               }
+              Navigator.pop(context);
             },
             child: Stack(
               children: [
@@ -284,6 +287,7 @@ class _ViewState extends State<View> {
                   MyApp.index = 3;
                 });
               }
+              Navigator.pop(context);
             },
             child: Stack(
               children: [
@@ -343,6 +347,7 @@ class _ViewState extends State<View> {
                   MyApp.index = 4;
                 });
               }
+              Navigator.pop(context);
             },
             child: Stack(
               children: [
@@ -437,7 +442,7 @@ class _ViewState extends State<View> {
             ),
           ),
         ),
-        actions: MyApp.isMobile ? null : _getActions(size),
+        actions: MyApp.isMobile ? null : _getActions(size, context),
       ),
       drawer: MyApp.isMobile
           ? Drawer(
@@ -445,7 +450,7 @@ class _ViewState extends State<View> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: _getActions(size),
+                children: _getActions(size, context),
               ),
             )
           : null,
