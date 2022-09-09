@@ -484,3 +484,4 @@ class Colours {
 // Build flag: --web-renderer=canvaskit
 // Dark Mode
 // Contact form
+// Images
