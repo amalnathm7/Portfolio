@@ -143,7 +143,10 @@ class _ExperiencePageState extends State<ExperiencePage> {
                       AnimatedPadding(
                         duration: const Duration(milliseconds: 500),
                         padding: MyApp.startExp
-                            ? EdgeInsets.zero
+                            ? EdgeInsets.only(
+                                top: size.width * 0.05,
+                                bottom: size.height * 0.02,
+                              )
                             : EdgeInsets.only(
                                 left: size.width * 0.03,
                                 right: size.width * 0.03,
@@ -168,7 +171,10 @@ class _ExperiencePageState extends State<ExperiencePage> {
                       AnimatedPadding(
                         duration: const Duration(milliseconds: 500),
                         padding: MyApp.startExp
-                            ? EdgeInsets.zero
+                            ? EdgeInsets.only(
+                                top: size.height * 0.02,
+                                bottom: size.height * 0.01,
+                              )
                             : EdgeInsets.only(
                                 left: size.width * 0.03,
                                 right: size.width * 0.03,
@@ -187,7 +193,10 @@ class _ExperiencePageState extends State<ExperiencePage> {
                       AnimatedPadding(
                         duration: const Duration(milliseconds: 500),
                         padding: MyApp.startExp
-                            ? EdgeInsets.zero
+                            ? EdgeInsets.only(
+                                top: size.height * 0.02,
+                                bottom: size.height * 0.01,
+                              )
                             : EdgeInsets.only(
                                 left: size.width * 0.03,
                                 right: size.width * 0.03,
@@ -204,11 +213,14 @@ class _ExperiencePageState extends State<ExperiencePage> {
                       Flexible(
                         child: SizedBox(
                           width: size.width / 3,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: size.width * 0.05,
-                              right: size.width * 0.05,
-                            ),
+                          child: AnimatedPadding(
+                            duration: const Duration(milliseconds: 700),
+                            padding: MyApp.startExp
+                                ? EdgeInsets.zero
+                                : EdgeInsets.only(
+                                    left: size.width * 0.05,
+                                    right: size.width * 0.05,
+                                  ),
                             child: MouseRegion(
                               onEnter: (event) {
                                 MyApp.scrollLock = true;
@@ -360,7 +372,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                           child: SizedBox(
                             width: size.width / 3,
                             child: AnimatedPadding(
-                              duration: const Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 700),
                               padding: MyApp.startExp
                                   ? EdgeInsets.zero
                                   : EdgeInsets.only(
@@ -524,7 +536,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                 ),
                 Expanded(
                   child: AnimatedPadding(
-                    duration: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 700),
                     padding: MyApp.startExp
                         ? EdgeInsets.zero
                         : EdgeInsets.only(
@@ -671,7 +683,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
             ),
           ),
           AnimatedOpacity(
-            duration: const Duration(milliseconds: 700),
+            duration: const Duration(milliseconds: 500),
             opacity: MyApp.startExp ? 0 : 1,
             child: Align(
               alignment: Alignment.topCenter,

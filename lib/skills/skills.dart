@@ -33,7 +33,7 @@ class _SkillsPageState extends State<SkillsPage> {
       child: Stack(
         children: [
           AnimatedPadding(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 700),
             padding: MyApp.startSkill
                 ? EdgeInsets.zero
                 : EdgeInsets.only(
@@ -107,7 +107,7 @@ class _SkillsPageState extends State<SkillsPage> {
           Align(
             alignment: Alignment.topCenter,
             child: AnimatedPadding(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 700),
               padding: MyApp.startSkill
                   ? EdgeInsets.zero
                   : EdgeInsets.only(
@@ -184,7 +184,7 @@ class _SkillsPageState extends State<SkillsPage> {
           Align(
             alignment: Alignment.centerLeft,
             child: AnimatedPadding(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 700),
               padding: MyApp.startSkill
                   ? EdgeInsets.zero
                   : EdgeInsets.only(
@@ -261,7 +261,7 @@ class _SkillsPageState extends State<SkillsPage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: AnimatedPadding(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 700),
               padding: MyApp.startSkill
                   ? EdgeInsets.zero
                   : EdgeInsets.only(
@@ -338,7 +338,7 @@ class _SkillsPageState extends State<SkillsPage> {
           Align(
             alignment: Alignment.centerRight,
             child: AnimatedPadding(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 700),
               padding: MyApp.startSkill
                   ? EdgeInsets.zero
                   : EdgeInsets.only(

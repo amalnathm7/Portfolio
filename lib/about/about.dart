@@ -102,93 +102,117 @@ class _AboutPageState extends State<AboutPage> {
               ],
             ),
           ),
-          AnimatedPositioned(
-            height: size.height,
-            width: size.width,
-            duration: const Duration(milliseconds: 500),
-            left: MyApp.startAbout ? -100 : 0,
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: size.width * 0.03,
-                      right: size.width * 0.03,
-                      top: size.height * 0.02,
-                      bottom: size.height * 0.02,
-                    ),
-                    child: Text(
-                      "So, who am I?",
-                      style: GoogleFonts.kanit(
-                        fontSize: size.width * 0.025,
-                        fontWeight: FontWeight.bold,
-                        color: Colours.text,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: size.width * 0.03,
-                    ),
-                    child: Lottie.network(
-                      "https://assets3.lottiefiles.com/private_files/lf30_GjhcdO.json",
-                      height: size.width * 0.075,
+          Align(
+            alignment: Alignment.topLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startAbout
+                      ? EdgeInsets.only(
+                          top: size.height * 0.02,
+                          bottom: size.height * 0.02,
+                        )
+                      : EdgeInsets.only(
+                          left: size.width * 0.03,
+                          right: size.width * 0.03,
+                          top: size.height * 0.02,
+                          bottom: size.height * 0.02,
+                        ),
+                  child: Text(
+                    "So, who am I?",
+                    style: GoogleFonts.kanit(
+                      fontSize: size.width * 0.025,
+                      fontWeight: FontWeight.bold,
+                      color: Colours.text,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: size.width * 0.03,
-                      right: size.width * 0.03,
-                      top: size.height * 0.02,
-                      bottom: size.height * 0.02,
-                    ),
-                    child: Text(
-                      "Well, that's a philosophical question\nif you ask me.\nNah, just kidding.",
-                      style: GoogleFonts.caveat(
-                        fontSize: size.width * 0.015,
-                        fontWeight: FontWeight.bold,
-                        color: Colours.text,
-                      ),
+                ),
+                AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startAbout
+                      ? EdgeInsets.zero
+                      : EdgeInsets.only(
+                          left: size.width * 0.03,
+                        ),
+                  child: Lottie.network(
+                    "https://assets3.lottiefiles.com/private_files/lf30_GjhcdO.json",
+                    height: size.width * 0.075,
+                  ),
+                ),
+                AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startAbout
+                      ? EdgeInsets.only(
+                          top: size.height * 0.02,
+                          bottom: size.height * 0.02,
+                        )
+                      : EdgeInsets.only(
+                          left: size.width * 0.03,
+                          right: size.width * 0.03,
+                          top: size.height * 0.02,
+                          bottom: size.height * 0.02,
+                        ),
+                  child: Text(
+                    "Well, that's a philosophical question\nif you ask me.\nNah, just kidding.",
+                    style: GoogleFonts.caveat(
+                      fontSize: size.width * 0.015,
+                      fontWeight: FontWeight.bold,
+                      color: Colours.text,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: size.width * 0.03,
-                      right: size.width * 0.03,
-                      top: size.height * 0.02,
-                      bottom: size.height * 0.01,
-                    ),
-                    child: Text(
-                      "I am a B.Tech undergraduate at TKM College\n"
-                      "of Engineering with passion towards learning\n"
-                      "the fundamentals and applications of Computer\n"
-                      "Science and Engineering.\n",
-                      style: GoogleFonts.caveat(
-                        fontSize: size.width * 0.015,
-                        color: Colours.text1,
-                      ),
+                ),
+                AnimatedPadding(
+                  duration: const Duration(milliseconds: 700),
+                  padding: MyApp.startAbout
+                      ? EdgeInsets.only(
+                          top: size.height * 0.02,
+                          bottom: size.height * 0.01,
+                        )
+                      : EdgeInsets.only(
+                          left: size.width * 0.03,
+                          right: size.width * 0.03,
+                          top: size.height * 0.02,
+                          bottom: size.height * 0.01,
+                        ),
+                  child: Text(
+                    "I am a B.Tech undergraduate at TKM College\n"
+                    "of Engineering with passion towards learning\n"
+                    "the fundamentals and applications of Computer\n"
+                    "Science and Engineering.\n",
+                    style: GoogleFonts.caveat(
+                      fontSize: size.width * 0.015,
+                      color: Colours.text1,
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: size.width * 0.03,
-                        right: size.width * 0.03,
-                        top: size.height * 0.01,
-                        bottom: size.height * 0.08,
-                      ),
-                      child: Container(
-                        height: size.height * 0.4,
-                        width: size.width * 0.3,
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.25),
-                            borderRadius:
-                                BorderRadius.circular(size.width / 50)),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(size.width / 50),
+                ),
+                Expanded(
+                  child: AnimatedPadding(
+                    duration: const Duration(milliseconds: 700),
+                    padding: MyApp.startAbout
+                        ? EdgeInsets.only(
+                            top: size.height * 0.02,
+                            bottom: size.height * 0.02,
+                          )
+                        : EdgeInsets.only(
+                            left: size.width * 0.03,
+                            right: size.width * 0.03,
+                            top: size.height * 0.01,
+                            bottom: size.height * 0.05,
+                          ),
+                    child: Container(
+                      height: size.height * 0.4,
+                      width: size.width * 0.3,
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.25),
+                          borderRadius: BorderRadius.circular(size.width / 50)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(size.width / 50),
+                        child: AnimatedOpacity(
+                          duration: const Duration(milliseconds: 1500),
+                          opacity: MyApp.startAbout ? 0 : 1,
                           child: Image.asset(
                             "assets/pic2.jpeg",
                             fit: BoxFit.cover,
@@ -197,39 +221,42 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          AnimatedPositioned(
-            height: size.height,
-            width: size.width,
-            duration: const Duration(milliseconds: 500),
-            right: MyApp.startAbout ? -100 : 0,
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: size.width * 0.03,
-                  right: size.width * 0.03,
-                  top: size.height * 0.02,
-                  bottom: size.height * 0.02,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: size.height * 0.4,
-                        width: size.width * 0.3,
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.25),
-                            borderRadius:
-                                BorderRadius.circular(size.width / 50)),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(size.width / 50),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: AnimatedPadding(
+              duration: const Duration(milliseconds: 700),
+              padding: MyApp.startAbout
+                  ? EdgeInsets.only(
+                      top: size.height * 0.02,
+                      bottom: size.height * 0.02,
+                    )
+                  : EdgeInsets.only(
+                      left: size.width * 0.03,
+                      right: size.width * 0.03,
+                      top: size.height * 0.02,
+                      bottom: size.height * 0.02,
+                    ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: size.height * 0.4,
+                      width: size.width * 0.3,
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.25),
+                          borderRadius: BorderRadius.circular(size.width / 50)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(size.width / 50),
+                        child: AnimatedOpacity(
+                          duration: const Duration(milliseconds: 1500),
+                          opacity: MyApp.startAbout ? 0 : 1,
                           child: Image.asset(
                             "assets/pic1.png",
                             fit: BoxFit.fitHeight,
@@ -237,45 +264,48 @@ class _AboutPageState extends State<AboutPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: size.height * 0.05,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.05,
+                  ),
+                  Text(
+                    "Anything else?",
+                    style: GoogleFonts.kanit(
+                      fontSize: size.width * 0.025,
+                      fontWeight: FontWeight.bold,
+                      color: Colours.text,
                     ),
-                    Text(
-                      "Anything else?",
-                      style: GoogleFonts.kanit(
-                        fontSize: size.width * 0.025,
-                        fontWeight: FontWeight.bold,
-                        color: Colours.text,
+                  ),
+                  AnimatedPadding(
+                    duration: const Duration(milliseconds: 700),
+                    padding: MyApp.startAbout
+                        ? EdgeInsets.zero
+                        : EdgeInsets.only(
+                            left: size.width * 0.03,
+                          ),
+                    child: Lottie.network(
+                      "https://assets3.lottiefiles.com/packages/lf20_qqu8eybe.json",
+                      height: size.width * 0.08,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: size.width * 0.02,
+                      bottom: size.width * 0.05,
+                    ),
+                    child: Text(
+                      "I can also refer to myself as a software developer\n"
+                      "with experience in building cross platform\n"
+                      "applications from ground up and deploying them\n"
+                      "in the respective platforms.",
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.caveat(
+                        fontSize: size.width * 0.015,
+                        color: Colours.text1,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: size.width * 0.03,
-                      ),
-                      child: Lottie.network(
-                        "https://assets3.lottiefiles.com/packages/lf20_qqu8eybe.json",
-                        height: size.width * 0.08,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: size.width * 0.02,
-                        bottom: size.width * 0.05,
-                      ),
-                      child: Text(
-                        "I can also refer to myself as a software developer\n"
-                        "with experience in building cross platform\n"
-                        "applications from ground up and deploying them\n"
-                        "in the respective platforms.",
-                        textAlign: TextAlign.end,
-                        style: GoogleFonts.caveat(
-                          fontSize: size.width * 0.015,
-                          color: Colours.text1,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -63,10 +63,13 @@ class _ContactPageState extends State<ContactPage> {
                         ),
                       ),
                       Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: size.width * 0.01,
-                          ),
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 700),
+                          padding: MyApp.startCont
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(
+                                  bottom: size.width * 0.01,
+                                ),
                           child: Text(
                             "I would love to discuss more opportunities. So shoot away!",
                             textAlign: TextAlign.center,
@@ -78,11 +81,14 @@ class _ContactPageState extends State<ContactPage> {
                         ),
                       ),
                       Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: size.width * 0.01,
-                            bottom: size.width * 0.01,
-                          ),
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 700),
+                          padding: MyApp.startCont
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(
+                                  top: size.width * 0.01,
+                                  bottom: size.width * 0.01,
+                                ),
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
@@ -106,11 +112,14 @@ class _ContactPageState extends State<ContactPage> {
                         ),
                       ),
                       Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: size.width * 0.01,
-                            bottom: size.width * 0.01,
-                          ),
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 700),
+                          padding: MyApp.startCont
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(
+                                  top: size.width * 0.01,
+                                  bottom: size.width * 0.01,
+                                ),
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
@@ -134,11 +143,14 @@ class _ContactPageState extends State<ContactPage> {
                         ),
                       ),
                       Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: size.width * 0.01,
-                            bottom: size.width * 0.01,
-                          ),
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 700),
+                          padding: MyApp.startCont
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(
+                                  top: size.width * 0.01,
+                                  bottom: size.width * 0.01,
+                                ),
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
@@ -162,11 +174,14 @@ class _ContactPageState extends State<ContactPage> {
                         ),
                       ),
                       Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: size.width * 0.01,
-                            bottom: size.width * 0.01,
-                          ),
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 700),
+                          padding: MyApp.startCont
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(
+                                  top: size.width * 0.01,
+                                  bottom: size.width * 0.01,
+                                ),
                           child: SizedBox(
                             width: size.width * 0.2,
                             child: TextField(
@@ -192,11 +207,14 @@ class _ContactPageState extends State<ContactPage> {
                         ),
                       ),
                       Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: size.width * 0.01,
-                            bottom: size.width * 0.01,
-                          ),
+                        child: AnimatedPadding(
+                          duration: const Duration(milliseconds: 700),
+                          padding: MyApp.startCont
+                              ? EdgeInsets.zero
+                              : EdgeInsets.only(
+                                  top: size.width * 0.01,
+                                  bottom: size.width * 0.01,
+                                ),
                           child: MaterialButton(
                             color: Colours.primary,
                             onPressed: () async {
@@ -224,7 +242,7 @@ class _ContactPageState extends State<ContactPage> {
                   ),
                 ),
                 AnimatedOpacity(
-                  duration: const Duration(milliseconds: 700),
+                  duration: const Duration(milliseconds: 1000),
                   opacity: MyApp.startCont ? 0 : 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
