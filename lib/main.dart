@@ -474,3 +474,8 @@ class Colours {
   static Color text = Colors.grey[800]!;
   static Color text1 = Colors.grey[900]!;
 }
+
+// todo
+// Build flag: --web-renderer=canvaskit
+// Dark Mode
+// Contact form
