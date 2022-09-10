@@ -12,6 +12,7 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+  bool _keyboardVisible = false;
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _domainController = TextEditingController();
@@ -207,86 +208,87 @@ class _ContactPageState extends State<ContactPage> {
                         textAlign: TextAlign.center,
                         style: GoogleFonts.kanit(
                           fontSize: size.width * 0.008,
-                          letterSpacing: MyApp.isMobile ? 1.0 : 3.0,
+                          letterSpacing: MyApp.isMobile ? 1.0 : 1.5,
                           color: Colours.text,
                         ),
                       ),
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
-      Expanded(
-        child: AnimatedOpacity(
-          duration: const Duration(milliseconds: 1000),
-          opacity: MyApp.startCont ? 0 : 1,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Lottie.network(
-                      "https://assets10.lottiefiles.com/packages/lf20_wbhpdrhp.json",
-                      height: size.width * 0.15,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "CONT",
-                          style: GoogleFonts.kanit(
-                            fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.bold,
-                            color: Colours.primary,
-                          ),
-                        ),
-                        Text(
-                          "ACT",
-                          style: GoogleFonts.kanit(
-                            fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.bold,
-                            color: Colours.text,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "M",
-                          style: GoogleFonts.kanit(
-                            fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.bold,
-                            color: Colours.primary,
-                          ),
-                        ),
-                        Text(
-                          "E.",
-                          style: GoogleFonts.kanit(
-                            fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.bold,
-                            color: Colours.text,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
               ),
             ],
           ),
         ),
       ),
+      if (!_keyboardVisible)
+        Expanded(
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 700),
+            opacity: MyApp.startCont ? 0 : 1,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.network(
+                        "https://assets10.lottiefiles.com/packages/lf20_wbhpdrhp.json",
+                        height: size.width * 0.15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "CONT",
+                            style: GoogleFonts.kanit(
+                              fontSize: size.width * 0.05,
+                              fontWeight: FontWeight.bold,
+                              color: Colours.primary,
+                            ),
+                          ),
+                          Text(
+                            "ACT",
+                            style: GoogleFonts.kanit(
+                              fontSize: size.width * 0.05,
+                              fontWeight: FontWeight.bold,
+                              color: Colours.text,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "M",
+                            style: GoogleFonts.kanit(
+                              fontSize: size.width * 0.05,
+                              fontWeight: FontWeight.bold,
+                              color: Colours.primary,
+                            ),
+                          ),
+                          Text(
+                            "E.",
+                            style: GoogleFonts.kanit(
+                              fontSize: size.width * 0.05,
+                              fontWeight: FontWeight.bold,
+                              color: Colours.text,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
     ];
   }
 
@@ -310,8 +312,10 @@ class _ContactPageState extends State<ContactPage> {
       size = Size(size.height, size.width);
     }
 
+    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 300),
       opacity: MyApp.startCont ? 0 : 1,
       child: Column(
         mainAxisSize: MainAxisSize.min,

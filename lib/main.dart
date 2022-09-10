@@ -14,6 +14,8 @@ void main() {
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  static final Changer changer = Changer();
+  static bool menu = false;
   static bool isMobile = false;
   static bool startHome = true;
   static bool startAbout = true;
@@ -77,302 +79,322 @@ class _ViewState extends State<View> {
 
   List<Widget> _getActions(Size size, BuildContext context) {
     return [
-      Padding(
-        padding: EdgeInsets.only(
-          left: size.width * 0.01,
-          right: size.width * 0.01,
-        ),
-        child: MouseRegion(
-          onEnter: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = 0;
-              });
-            }
-          },
-          onExit: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = MyApp.index;
-              });
-            }
-          },
-          child: TextButton(
-            onPressed: () {
-              MyApp.controller.animateToPage(0,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.decelerate);
+      AnimatedOpacity(
+        duration: const Duration(milliseconds: 500),
+        opacity: MyApp.menu ? 0 : 1,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: size.width * 0.01,
+            right: size.width * 0.01,
+          ),
+          child: MouseRegion(
+            onEnter: (event) {
               if (mounted) {
                 setState(() {
-                  MyApp.index = 0;
+                  _menuIndex = 0;
                 });
               }
-              Navigator.pop(context);
             },
-            child: Stack(
-              children: [
-                Positioned(
-                  top: size.width * 0.003,
-                  child: AnimatedContainer(
+            onExit: (event) {
+              if (mounted) {
+                setState(() {
+                  _menuIndex = MyApp.index;
+                });
+              }
+            },
+            child: TextButton(
+              onPressed: () {
+                MyApp.controller.animateToPage(0,
                     duration: const Duration(milliseconds: 500),
-                    height: size.width * 0.003,
-                    width: _menuIndex == 0 ? size.width * 0.04 : 0,
-                    decoration: BoxDecoration(
-                      color: Colours.primary.withOpacity(0.75),
+                    curve: Curves.decelerate);
+                if (mounted) {
+                  setState(() {
+                    MyApp.index = 0;
+                  });
+                }
+                if (MyApp.isMobile) Navigator.pop(context);
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: size.width * 0.003,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      height: size.width * 0.003,
+                      width: _menuIndex == 0 ? size.width * 0.04 : 0,
+                      decoration: BoxDecoration(
+                        color: Colours.primary.withOpacity(0.75),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  "HOME",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: size.width * 0.007,
-                    letterSpacing: 3,
-                    fontWeight: FontWeight.bold,
-                    color: _menuIndex == 0 ? Colors.grey[800] : Colors.grey,
+                  Text(
+                    "HOME",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: size.width * 0.007,
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.bold,
+                      color: _menuIndex == 0 ? Colors.grey[800] : Colors.grey,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
-      Padding(
-        padding: EdgeInsets.only(
-          left: size.width * 0.01,
-          right: size.width * 0.01,
-        ),
-        child: MouseRegion(
-          onEnter: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = 1;
-              });
-            }
-          },
-          onExit: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = MyApp.index;
-              });
-            }
-          },
-          child: TextButton(
-            onPressed: () {
-              MyApp.controller.animateToPage(1,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.decelerate);
+      AnimatedOpacity(
+        duration: const Duration(milliseconds: 500),
+        opacity: MyApp.menu ? 0 : 1,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: size.width * 0.01,
+            right: size.width * 0.01,
+          ),
+          child: MouseRegion(
+            onEnter: (event) {
               if (mounted) {
                 setState(() {
-                  MyApp.index = 1;
+                  _menuIndex = 1;
                 });
               }
-              Navigator.pop(context);
             },
-            child: Stack(
-              children: [
-                Positioned(
-                  top: size.width * 0.003,
-                  child: AnimatedContainer(
+            onExit: (event) {
+              if (mounted) {
+                setState(() {
+                  _menuIndex = MyApp.index;
+                });
+              }
+            },
+            child: TextButton(
+              onPressed: () {
+                MyApp.controller.animateToPage(1,
                     duration: const Duration(milliseconds: 500),
-                    height: size.width * 0.003,
-                    width: _menuIndex == 1 ? size.width * 0.08 : 0,
-                    decoration: BoxDecoration(
-                      color: Colours.primary.withOpacity(0.75),
+                    curve: Curves.decelerate);
+                if (mounted) {
+                  setState(() {
+                    MyApp.index = 1;
+                  });
+                }
+                if (MyApp.isMobile) Navigator.pop(context);
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: size.width * 0.003,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      height: size.width * 0.003,
+                      width: _menuIndex == 1 ? size.width * 0.08 : 0,
+                      decoration: BoxDecoration(
+                        color: Colours.primary.withOpacity(0.75),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  "ABOUT",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: size.width * 0.007,
-                    letterSpacing: 3,
-                    fontWeight: FontWeight.bold,
-                    color: _menuIndex == 1 ? Colors.grey[800] : Colors.grey,
+                  Text(
+                    "ABOUT",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: size.width * 0.007,
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.bold,
+                      color: _menuIndex == 1 ? Colors.grey[800] : Colors.grey,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
-      Padding(
-        padding: EdgeInsets.only(
-          left: size.width * 0.01,
-          right: size.width * 0.01,
-        ),
-        child: MouseRegion(
-          onEnter: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = 2;
-              });
-            }
-          },
-          onExit: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = MyApp.index;
-              });
-            }
-          },
-          child: TextButton(
-            onPressed: () {
-              MyApp.controller.animateToPage(2,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.decelerate);
+      AnimatedOpacity(
+        duration: const Duration(milliseconds: 500),
+        opacity: MyApp.menu ? 0 : 1,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: size.width * 0.01,
+            right: size.width * 0.01,
+          ),
+          child: MouseRegion(
+            onEnter: (event) {
               if (mounted) {
                 setState(() {
-                  MyApp.index = 2;
+                  _menuIndex = 2;
                 });
               }
-              Navigator.pop(context);
             },
-            child: Stack(
-              children: [
-                Positioned(
-                  top: size.width * 0.003,
-                  child: AnimatedContainer(
+            onExit: (event) {
+              if (mounted) {
+                setState(() {
+                  _menuIndex = MyApp.index;
+                });
+              }
+            },
+            child: TextButton(
+              onPressed: () {
+                MyApp.controller.animateToPage(2,
                     duration: const Duration(milliseconds: 500),
-                    height: size.width * 0.003,
-                    width: _menuIndex == 2 ? size.width * 0.15 : 0,
-                    decoration: BoxDecoration(
-                      color: Colours.primary.withOpacity(0.75),
+                    curve: Curves.decelerate);
+                if (mounted) {
+                  setState(() {
+                    MyApp.index = 2;
+                  });
+                }
+                if (MyApp.isMobile) Navigator.pop(context);
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: size.width * 0.003,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      height: size.width * 0.003,
+                      width: _menuIndex == 2 ? size.width * 0.15 : 0,
+                      decoration: BoxDecoration(
+                        color: Colours.primary.withOpacity(0.75),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  "SKILLS",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: size.width * 0.007,
-                    letterSpacing: 3,
-                    fontWeight: FontWeight.bold,
-                    color: _menuIndex == 2 ? Colors.grey[800] : Colors.grey,
+                  Text(
+                    "SKILLS",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: size.width * 0.007,
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.bold,
+                      color: _menuIndex == 2 ? Colors.grey[800] : Colors.grey,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
-      Padding(
-        padding: EdgeInsets.only(
-          left: size.width * 0.01,
-          right: size.width * 0.01,
-        ),
-        child: MouseRegion(
-          onEnter: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = 3;
-              });
-            }
-          },
-          onExit: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = MyApp.index;
-              });
-            }
-          },
-          child: TextButton(
-            onPressed: () {
-              MyApp.controller.animateToPage(3,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.decelerate);
+      AnimatedOpacity(
+        duration: const Duration(milliseconds: 500),
+        opacity: MyApp.menu ? 0 : 1,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: size.width * 0.01,
+            right: size.width * 0.01,
+          ),
+          child: MouseRegion(
+            onEnter: (event) {
               if (mounted) {
                 setState(() {
-                  MyApp.index = 3;
+                  _menuIndex = 3;
                 });
               }
-              Navigator.pop(context);
             },
-            child: Stack(
-              children: [
-                Positioned(
-                  top: size.width * 0.003,
-                  child: AnimatedContainer(
+            onExit: (event) {
+              if (mounted) {
+                setState(() {
+                  _menuIndex = MyApp.index;
+                });
+              }
+            },
+            child: TextButton(
+              onPressed: () {
+                MyApp.controller.animateToPage(3,
                     duration: const Duration(milliseconds: 500),
-                    height: size.width * 0.003,
-                    width: _menuIndex == 3 ? size.width * 0.15 : 0,
-                    decoration: BoxDecoration(
-                      color: Colours.primary.withOpacity(0.75),
+                    curve: Curves.decelerate);
+                if (mounted) {
+                  setState(() {
+                    MyApp.index = 3;
+                  });
+                }
+                if (MyApp.isMobile) Navigator.pop(context);
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: size.width * 0.003,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      height: size.width * 0.003,
+                      width: _menuIndex == 3 ? size.width * 0.15 : 0,
+                      decoration: BoxDecoration(
+                        color: Colours.primary.withOpacity(0.75),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  "EXPERIENCE",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: size.width * 0.007,
-                    letterSpacing: 3,
-                    fontWeight: FontWeight.bold,
-                    color: _menuIndex == 3 ? Colors.grey[800] : Colors.grey,
+                  Text(
+                    "EXPERIENCE",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: size.width * 0.007,
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.bold,
+                      color: _menuIndex == 3 ? Colors.grey[800] : Colors.grey,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
-      Padding(
-        padding: EdgeInsets.only(
-          left: size.width * 0.01,
-          right: size.width * 0.01,
-        ),
-        child: MouseRegion(
-          onEnter: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = 4;
-              });
-            }
-          },
-          onExit: (event) {
-            if (mounted) {
-              setState(() {
-                _menuIndex = MyApp.index;
-              });
-            }
-          },
-          child: TextButton(
-            onPressed: () {
-              MyApp.controller.animateToPage(4,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.decelerate);
+      AnimatedOpacity(
+        duration: const Duration(milliseconds: 500),
+        opacity: MyApp.menu ? 0 : 1,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: size.width * 0.01,
+            right: size.width * 0.01,
+          ),
+          child: MouseRegion(
+            onEnter: (event) {
               if (mounted) {
                 setState(() {
-                  MyApp.index = 4;
+                  _menuIndex = 4;
                 });
               }
-              Navigator.pop(context);
             },
-            child: Stack(
-              children: [
-                Positioned(
-                  top: size.width * 0.003,
-                  child: AnimatedContainer(
+            onExit: (event) {
+              if (mounted) {
+                setState(() {
+                  _menuIndex = MyApp.index;
+                });
+              }
+            },
+            child: TextButton(
+              onPressed: () {
+                MyApp.controller.animateToPage(4,
                     duration: const Duration(milliseconds: 500),
-                    height: size.width * 0.003,
-                    width: _menuIndex == 4 ? size.width * 0.15 : 0,
-                    decoration: BoxDecoration(
-                      color: Colours.primary.withOpacity(0.75),
+                    curve: Curves.decelerate);
+                if (mounted) {
+                  setState(() {
+                    MyApp.index = 4;
+                  });
+                }
+                if (MyApp.isMobile) Navigator.pop(context);
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: size.width * 0.003,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      height: size.width * 0.003,
+                      width: _menuIndex == 4 ? size.width * 0.15 : 0,
+                      decoration: BoxDecoration(
+                        color: Colours.primary.withOpacity(0.75),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  "CONTACT",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: size.width * 0.007,
-                    letterSpacing: 3,
-                    fontWeight: FontWeight.bold,
-                    color: _menuIndex == 4 ? Colors.grey[800] : Colors.grey,
+                  Text(
+                    "CONTACT",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: size.width * 0.007,
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.bold,
+                      color: _menuIndex == 4 ? Colors.grey[800] : Colors.grey,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -383,11 +405,17 @@ class _ViewState extends State<View> {
   @override
   void initState() {
     super.initState();
+    MyApp.changer.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
     MyApp.controller.addListener(() {
       if (mounted) {
         setState(() {
           MyApp.index = MyApp.controller.page!.toInt();
           _menuIndex = MyApp.index;
+          MyApp.menu = false;
         });
       }
     });
@@ -412,6 +440,7 @@ class _ViewState extends State<View> {
 
     return Scaffold(
       backgroundColor: Colours.bg,
+      extendBodyBehindAppBar: MyApp.menu ? true : false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.transparent,
@@ -478,6 +507,12 @@ class Colours {
   static Color secondary = const Color(0xFFCF9FFF);
   static Color text = Colors.grey[800]!;
   static Color text1 = Colors.grey[900]!;
+}
+
+class Changer extends ChangeNotifier {
+  void notify() {
+    notifyListeners();
+  }
 }
 
 // todo

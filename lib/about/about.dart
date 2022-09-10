@@ -34,7 +34,7 @@ class _AboutPageState extends State<AboutPage> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(size.width / 50),
           child: AnimatedOpacity(
-            duration: const Duration(milliseconds: 1500),
+            duration: const Duration(milliseconds: 700),
             opacity: MyApp.startAbout ? 0 : 1,
             child: Image.asset(
               "assets/pic1.png",
@@ -70,7 +70,7 @@ class _AboutPageState extends State<AboutPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(size.width / 50),
             child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 1500),
+              duration: const Duration(milliseconds: 700),
               opacity: MyApp.startAbout ? 0 : 1,
               child: Image.asset(
                 "assets/pic2.jpeg",
@@ -92,7 +92,7 @@ class _AboutPageState extends State<AboutPage> {
     }
 
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 300),
       opacity: MyApp.startAbout ? 0 : 1,
       child: Stack(
         children: [

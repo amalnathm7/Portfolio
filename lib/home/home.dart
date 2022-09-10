@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  bool _menu = false;
   int _menuIndex = 0;
   AnimationController? _animationController;
   final String _gitHubUrl = "https://github.com/amalnathm7";
@@ -62,7 +61,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     return AnimatedPadding(
       duration: const Duration(milliseconds: 500),
-      padding: _menu
+      padding: MyApp.menu
           ? EdgeInsets.zero
           : EdgeInsets.only(
               left: 30,
@@ -71,14 +70,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               bottom: size.width * 0.02,
             ),
       child: AnimatedOpacity(
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 300),
         opacity: MyApp.startHome ? 0 : 1,
         child: Stack(
           children: [
             Center(
               child: AnimatedPadding(
                 duration: const Duration(milliseconds: 500),
-                padding: _menu
+                padding: MyApp.menu
                     ? EdgeInsets.only(left: size.width * 0.3)
                     : EdgeInsets.zero,
                 child: Row(
@@ -99,7 +98,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             AnimatedPositioned(
               top: size.height * 0.4,
-              left: _menu ? size.width * 0.1 : -500,
+              left: MyApp.menu ? size.width * 0.1 : -500,
               duration: const Duration(milliseconds: 500),
               child: MouseRegion(
                 onEnter: (event) {
@@ -150,7 +149,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             AnimatedPositioned(
               top: size.height * 0.45,
-              left: _menu ? size.width * 0.1 : -500,
+              left: MyApp.menu ? size.width * 0.1 : -500,
               duration: const Duration(milliseconds: 600),
               child: MouseRegion(
                 onEnter: (event) {
@@ -201,7 +200,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             AnimatedPositioned(
               top: size.height * 0.5,
-              left: _menu ? size.width * 0.1 : -500,
+              left: MyApp.menu ? size.width * 0.1 : -500,
               duration: const Duration(milliseconds: 700),
               child: MouseRegion(
                 onEnter: (event) {
@@ -252,7 +251,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             AnimatedPositioned(
               top: size.height * 0.55,
-              left: _menu ? size.width * 0.1 : -500,
+              left: MyApp.menu ? size.width * 0.1 : -500,
               duration: const Duration(milliseconds: 800),
               child: MouseRegion(
                 onEnter: (event) {
@@ -303,7 +302,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             AnimatedPositioned(
               top: size.height * 0.6,
-              left: _menu ? size.width * 0.1 : -500,
+              left: MyApp.menu ? size.width * 0.1 : -500,
               duration: const Duration(milliseconds: 900),
               child: MouseRegion(
                 onEnter: (event) {
@@ -375,12 +374,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           hoverColor: Colors.transparent,
                           onPressed: () {
                             setState(() {
-                              _menu = !_menu;
+                              MyApp.menu = !MyApp.menu;
                             });
 
-                            _menu
+                            MyApp.menu
                                 ? _animationController!.forward()
                                 : _animationController!.reverse();
+
+                            MyApp.changer.notify();
                           },
                           icon: AnimatedIcon(
                             size: size.width * 0.02,
@@ -394,7 +395,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Flexible(
                       child: AnimatedOpacity(
                         duration: const Duration(milliseconds: 500),
-                        opacity: _menu ? 0 : 1,
+                        opacity: MyApp.menu ? 0 : 1,
                         child: Transform.scale(
                           scaleX: -1,
                           child: RotatedBox(
@@ -412,7 +413,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         padding: EdgeInsets.only(left: size.width * 0.02),
                         child: AnimatedOpacity(
                           duration: const Duration(milliseconds: 500),
-                          opacity: _menu ? 0 : 1,
+                          opacity: MyApp.menu ? 0 : 1,
                           child: Text(
                             "You can jump into\nmy life here",
                             style: GoogleFonts.caveat(
@@ -431,7 +432,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               opacity: MyApp.startHome ? 0 : 1,
               child: AnimatedPadding(
                 duration: const Duration(milliseconds: 500),
-                padding: _menu
+                padding: MyApp.menu
                     ? EdgeInsets.only(left: size.width * 0.3)
                     : EdgeInsets.zero,
                 child: Center(
@@ -512,7 +513,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: Padding(
                       padding: EdgeInsets.only(right: size.width * 0.02),
                       child: AnimatedOpacity(
-                        opacity: _menu ? 0 : 1,
+                        opacity: MyApp.menu ? 0 : 1,
                         duration: const Duration(milliseconds: 500),
                         child: Text(
                           "I'm active in\nthese platforms",
@@ -526,7 +527,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                   Flexible(
                     child: AnimatedOpacity(
-                      opacity: _menu ? 0 : 1,
+                      opacity: MyApp.menu ? 0 : 1,
                       duration: const Duration(milliseconds: 500),
                       child: Transform.scale(
                         scaleX: -1,
@@ -614,7 +615,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               alignment: Alignment.bottomCenter,
               child: AnimatedOpacity(
                 duration: const Duration(milliseconds: 500),
-                opacity: _menu ? 0 : 0.25,
+                opacity: MyApp.menu ? 0 : 0.25,
                 child: Lottie.network(
                   "https://assets3.lottiefiles.com/packages/lf20_uzoyW6.json",
                   height: size.width * 0.05,

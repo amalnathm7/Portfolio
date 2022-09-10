@@ -697,7 +697,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
     }
 
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 300),
       opacity: MyApp.startExp ? 0 : 1,
       child: Stack(
         children: [
