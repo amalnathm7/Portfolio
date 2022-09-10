@@ -440,7 +440,6 @@ class _ViewState extends State<View> {
 
     return Scaffold(
       backgroundColor: Colours.bg,
-      extendBodyBehindAppBar: MyApp.menu ? true : false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.transparent,
