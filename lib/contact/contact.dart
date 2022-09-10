@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:portfolio/main.dart';
@@ -17,6 +20,7 @@ class _ContactPageState extends State<ContactPage> {
   final _emailController = TextEditingController();
   final _domainController = TextEditingController();
   final _descController = TextEditingController();
+  late StreamSubscription<bool> _keyboardSubscription;
 
   Future<bool> _send() async {
     _nameController.clear();
@@ -302,6 +306,23 @@ class _ContactPageState extends State<ContactPage> {
         });
       }
     });
+
+    var keyboardVisibilityController = KeyboardVisibilityController();
+
+    _keyboardSubscription =
+        keyboardVisibilityController.onChange.listen((bool visible) {
+      if (mounted) {
+        setState(() {
+          _keyboardVisible = visible;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _keyboardSubscription.cancel();
+    super.dispose();
   }
 
   @override
@@ -311,8 +332,6 @@ class _ContactPageState extends State<ContactPage> {
     if (MyApp.isMobile) {
       size = Size(size.height, size.width);
     }
-
-    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 300),
