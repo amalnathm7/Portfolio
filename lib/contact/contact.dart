@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:portfolio/main.dart';
@@ -15,12 +12,10 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
-  bool _keyboardVisible = false;
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _domainController = TextEditingController();
   final _descController = TextEditingController();
-  late StreamSubscription<bool> _keyboardSubscription;
 
   Future<bool> _send() async {
     _nameController.clear();
@@ -224,75 +219,74 @@ class _ContactPageState extends State<ContactPage> {
           ),
         ),
       ),
-      if (!_keyboardVisible)
-        Expanded(
-          child: AnimatedOpacity(
-            duration: const Duration(milliseconds: 700),
-            opacity: MyApp.startCont ? 0 : 1,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Lottie.network(
-                        "https://assets10.lottiefiles.com/packages/lf20_wbhpdrhp.json",
-                        height: size.width * 0.15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "CONT",
-                            style: GoogleFonts.kanit(
-                              fontSize: size.width * 0.05,
-                              fontWeight: FontWeight.bold,
-                              color: Colours.primary,
-                            ),
+      Expanded(
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 700),
+          opacity: MyApp.startCont ? 0 : 1,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.network(
+                      "https://assets10.lottiefiles.com/packages/lf20_wbhpdrhp.json",
+                      height: size.width * 0.15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "CONT",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.primary,
                           ),
-                          Text(
-                            "ACT",
-                            style: GoogleFonts.kanit(
-                              fontSize: size.width * 0.05,
-                              fontWeight: FontWeight.bold,
-                              color: Colours.text,
-                            ),
+                        ),
+                        Text(
+                          "ACT",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.text,
                           ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "M",
-                            style: GoogleFonts.kanit(
-                              fontSize: size.width * 0.05,
-                              fontWeight: FontWeight.bold,
-                              color: Colours.primary,
-                            ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "M",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.primary,
                           ),
-                          Text(
-                            "E.",
-                            style: GoogleFonts.kanit(
-                              fontSize: size.width * 0.05,
-                              fontWeight: FontWeight.bold,
-                              color: Colours.text,
-                            ),
+                        ),
+                        Text(
+                          "E.",
+                          style: GoogleFonts.kanit(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: Colours.text,
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
     ];
   }
 
@@ -306,22 +300,10 @@ class _ContactPageState extends State<ContactPage> {
         });
       }
     });
-
-    var keyboardVisibilityController = KeyboardVisibilityController();
-
-    _keyboardSubscription =
-        keyboardVisibilityController.onChange.listen((bool visible) {
-      if (mounted) {
-        setState(() {
-          _keyboardVisible = visible;
-        });
-      }
-    });
   }
 
   @override
   void dispose() {
-    _keyboardSubscription.cancel();
     super.dispose();
   }
 
